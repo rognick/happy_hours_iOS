@@ -41,6 +41,7 @@
 		52BC8A3319753B1B004ED81F /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BC8A2A19753B1B004ED81F /* UIRefreshControl+AFNetworking.m */; };
 		52BC8A3419753B1B004ED81F /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BC8A2C19753B1B004ED81F /* UIWebView+AFNetworking.m */; };
 		52BC8A36197541D5004ED81F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52BC8A35197541D5004ED81F /* SystemConfiguration.framework */; };
+		52BC8A39197565DD004ED81F /* ServerSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BC8A38197565DD004ED81F /* ServerSettingsViewController.m */; };
 		52D27D781971E2B000FC93F7 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D27D771971E2B000FC93F7 /* SettingsTableViewController.m */; };
 		52D27D7A1971FD1600FC93F7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52D27D791971FD1600FC93F7 /* Images.xcassets */; };
 		52D27D7D1971FD7F00FC93F7 /* LoginTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D27D7C1971FD7F00FC93F7 /* LoginTableViewController.m */; };
@@ -117,6 +118,8 @@
 		52BC8A2B19753B1B004ED81F /* UIWebView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+AFNetworking.h"; sourceTree = "<group>"; };
 		52BC8A2C19753B1B004ED81F /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
 		52BC8A35197541D5004ED81F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		52BC8A37197565DD004ED81F /* ServerSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerSettingsViewController.h; sourceTree = "<group>"; };
+		52BC8A38197565DD004ED81F /* ServerSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerSettingsViewController.m; sourceTree = "<group>"; };
 		52D27D761971E2B000FC93F7 /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewController.h; sourceTree = "<group>"; };
 		52D27D771971E2B000FC93F7 /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
 		52D27D791971FD1600FC93F7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -160,6 +163,8 @@
 				52D27D761971E2B000FC93F7 /* SettingsTableViewController.h */,
 				52D27D771971E2B000FC93F7 /* SettingsTableViewController.m */,
 				52D27D791971FD1600FC93F7 /* Images.xcassets */,
+				52BC8A37197565DD004ED81F /* ServerSettingsViewController.h */,
+				52BC8A38197565DD004ED81F /* ServerSettingsViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -422,6 +427,7 @@
 				52BC89FD19743608004ED81F /* Constants.m in Sources */,
 				52BC8A1919753B0C004ED81F /* AFURLResponseSerialization.m in Sources */,
 				52BC8A3019753B1B004ED81F /* UIButton+AFNetworking.m in Sources */,
+				52BC8A39197565DD004ED81F /* ServerSettingsViewController.m in Sources */,
 				52D27D781971E2B000FC93F7 /* SettingsTableViewController.m in Sources */,
 				52BC8A2E19753B1B004ED81F /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				52BC8A1819753B0C004ED81F /* AFURLRequestSerialization.m in Sources */,

@@ -13,5 +13,6 @@
 extern NSString* const KEY_LOGIN;
 extern NSString* const KEY_TIMER_ON;
 extern NSString* const SERVICE_NAME;
+extern NSString* const LOGIN_SETUP;
 
 @end

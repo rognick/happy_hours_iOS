@@ -35,6 +35,10 @@
     
     Keychain * keychain =[[Keychain alloc] initWithService:SERVICE_NAME withGroup:nil];
     
+    [keychain remove:@"PASSWORD"];
+    [keychain remove:@"LOGIN"];
+
+    
     NSData *password =[keychain find:@"PASSWORD"];
     NSData *login = [keychain find:@"LOGIN"];
     if(login == nil)
@@ -45,6 +49,9 @@
     {
         _userLogin.text = [[NSString alloc] initWithData:login encoding:NSUTF8StringEncoding];
         _userPassword.text = [[NSString alloc] initWithData:password encoding:NSUTF8StringEncoding];
+        _userLogin.enabled = false;
+        _userPassword.enabled = false;
+        _singInCell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
 }
@@ -88,7 +95,7 @@
 
         
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setBool:true forKey:@"LogIn"];
+        [defaults setBool:true forKey:LOGIN_SETUP];
         [defaults synchronize];
     }
 }
@@ -98,7 +105,11 @@
 {
     if (_userPassword.text.length > 0 && _userLogin.text.length > 0 ) {
         _singInLabel.enabled = true;
-    } else _singInLabel.enabled = false;
+        _singInCell.selectionStyle = UITableViewCellSelectionStyleBlue;
+    } else {
+        _singInLabel.enabled = false;
+        _singInCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
     
     return YES;
 }
@@ -107,7 +118,12 @@
 {
     if (_userPassword.text.length > 0 && _userLogin.text.length > 0 ) {
         _singInLabel.enabled = true;
-    } else _singInLabel.enabled = false;
+        _singInCell.selectionStyle = UITableViewCellSelectionStyleBlue;
+    } else {
+        _singInLabel.enabled = false;
+        _singInCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+
     return YES;
 }
 

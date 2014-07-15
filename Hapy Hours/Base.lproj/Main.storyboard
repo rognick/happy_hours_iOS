@@ -336,6 +336,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Winify" id="sxG-i1-WoS"/>
                     <connections>
+                        <outlet property="singInCell" destination="pp4-AG-eVq" id="XhM-kk-VUQ"/>
                         <outlet property="singInLabel" destination="24V-8y-XfF" id="DX3-2Y-O52"/>
                         <outlet property="userLogin" destination="oBu-fb-iYz" id="R91-Fx-7Dy"/>
                         <outlet property="userPassword" destination="SCY-Jn-dDZ" id="yIj-sB-AwQ"/>
@@ -372,7 +373,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A02-Gd-ll1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="439" y="816"/>
+            <point key="canvasLocation" x="421" y="832"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="IKa-PM-35d">

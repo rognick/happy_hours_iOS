@@ -13,5 +13,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *userLogin;
 @property (weak, nonatomic) IBOutlet UITextField *userPassword;
 @property (weak, nonatomic) IBOutlet UILabel *singInLabel;
+@property (weak, nonatomic) IBOutlet UITableViewCell *singInCell;
 
 @end

@@ -22,7 +22,6 @@
 		5299D581196AB87300380AA6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5299D563196AB87300380AA6 /* UIKit.framework */; };
 		5299D589196AB87300380AA6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5299D587196AB87300380AA6 /* InfoPlist.strings */; };
 		5299D58B196AB87300380AA6 /* Hapy_HoursTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5299D58A196AB87300380AA6 /* Hapy_HoursTests.m */; };
-		52BC89F91973D924004ED81F /* UserProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BC89F81973D924004ED81F /* UserProperties.m */; };
 		52BC89FD19743608004ED81F /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BC89FC19743608004ED81F /* Constants.m */; };
 		52D27D781971E2B000FC93F7 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D27D771971E2B000FC93F7 /* SettingsTableViewController.m */; };
 		52D27D7A1971FD1600FC93F7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52D27D791971FD1600FC93F7 /* Images.xcassets */; };
@@ -61,8 +60,6 @@
 		5299D586196AB87300380AA6 /* Hapy HoursTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Hapy HoursTests-Info.plist"; sourceTree = "<group>"; };
 		5299D588196AB87300380AA6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5299D58A196AB87300380AA6 /* Hapy_HoursTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Hapy_HoursTests.m; sourceTree = "<group>"; };
-		52BC89F71973D924004ED81F /* UserProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProperties.h; sourceTree = "<group>"; };
-		52BC89F81973D924004ED81F /* UserProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProperties.m; sourceTree = "<group>"; };
 		52BC89FB19743608004ED81F /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		52BC89FC19743608004ED81F /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		52D27D761971E2B000FC93F7 /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewController.h; sourceTree = "<group>"; };
@@ -190,8 +187,6 @@
 			children = (
 				521A1BA019733265007EB59C /* Keychain.h */,
 				521A1BA119733265007EB59C /* Keychain.m */,
-				52BC89F71973D924004ED81F /* UserProperties.h */,
-				52BC89F81973D924004ED81F /* UserProperties.m */,
 			);
 			name = "User Settings";
 			sourceTree = "<group>";
@@ -309,7 +304,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52BC89F91973D924004ED81F /* UserProperties.m in Sources */,
 				52D27D7D1971FD7F00FC93F7 /* LoginTableViewController.m in Sources */,
 				521A1BA219733265007EB59C /* Keychain.m in Sources */,
 				52BC89FD19743608004ED81F /* Constants.m in Sources */,

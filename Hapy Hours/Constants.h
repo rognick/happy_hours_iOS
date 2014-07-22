@@ -14,7 +14,8 @@ extern NSString* const KEY_LOGIN;
 extern NSString* const KEY_TIMER_ON;
 extern NSString* const SERVICE_NAME;
 extern NSString* const LOGIN_SETUP;
-extern NSString* const SERVER_IP;
+extern NSString* const SERVER_HOST;
 extern NSString* const SERVER_PORT;
+extern NSString* const TOKEN;
 
 @end

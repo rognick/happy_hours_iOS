@@ -13,15 +13,17 @@
 
 @interface LoginTableViewController ()
 
+@property (strong, nonatomic) Keychain *keychain;
+
 @end
 
 @implementation LoginTableViewController
+@synthesize keychain;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
@@ -33,12 +35,7 @@
     _userLogin.delegate = self;
     _userPassword.delegate = self;
     
-    Keychain * keychain =[[Keychain alloc] initWithService:SERVICE_NAME withGroup:nil];
-    
-    [keychain remove:@"PASSWORD"];
-    [keychain remove:@"LOGIN"];
-
-    
+    keychain =[[Keychain alloc] initWithService:SERVICE_NAME withGroup:nil];
     NSData *password =[keychain find:@"PASSWORD"];
     NSData *login = [keychain find:@"LOGIN"];
     if(login == nil)
@@ -62,17 +59,13 @@
     // Dispose of any resources that can be recreated.
 }
 
-
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
     if ((_singInLabel.enabled) && (indexPath.section == 3)) {
-
-        Keychain * keychain =[[Keychain alloc] initWithService:SERVICE_NAME withGroup:nil];
         
         NSString *key =@"LOGIN";
-        [keychain remove:key];
-        NSData * value = [_userLogin.text dataUsingEncoding:NSUTF8StringEncoding];
+        NSData *value = [_userLogin.text dataUsingEncoding:NSUTF8StringEncoding];
         
         if([keychain insert:key :value])
         {
@@ -81,9 +74,7 @@
         else
             NSLog(@"Failed to  add Login");
         
-        
         key =@"PASSWORD";
-        [keychain remove:key];
         value = [_userPassword.text dataUsingEncoding:NSUTF8StringEncoding];
         
         if([keychain insert:key :value])
@@ -97,6 +88,8 @@
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setBool:true forKey:LOGIN_SETUP];
         [defaults synchronize];
+        _userLogin.enabled = false;
+        _userPassword.enabled = false;
     }
 }
 
@@ -126,11 +119,40 @@
 
     return YES;
 }
+- (IBAction)editButton:(UIBarButtonItem *)sender {
+    
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Password"
+                                                        message:nil
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
 
--(void)textFieldDidBeginEditing:(UITextField *)textField {
+    alertView.alertViewStyle = UIAlertViewStyleSecureTextInput;
+    [alertView show];
 }
 
--(void)textFieldDidEndEditing:(UITextField *)textField {
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+    NSData *pass =[keychain find:@"PASSWORD"];
+    NSString *password = [[NSString alloc] initWithData:pass encoding:NSUTF8StringEncoding];
+    
+    if([title isEqualToString:@"OK"])
+    {
+        if ([[alertView textFieldAtIndex:0].text isEqualToString:password]) {
+            [keychain remove:@"PASSWORD"];
+            [keychain remove:@"LOGIN"];
+            _userLogin.enabled = true;
+            _userPassword.enabled = true;
+        } else {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Password"
+                                                                message:@"error password try again"
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles:nil];
+            [alertView show];
+        }
+    }
 }
 
 @end

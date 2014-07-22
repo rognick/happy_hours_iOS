@@ -14,4 +14,6 @@
 
 @property (weak, nonatomic) IBOutlet UISwitch *timerSwitch;
 
+@property (weak, nonatomic) IBOutlet UILabel *timerLabel;
+
 @end

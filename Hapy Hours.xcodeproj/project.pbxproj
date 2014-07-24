@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		521A1BA219733265007EB59C /* Keychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 521A1BA119733265007EB59C /* Keychain.m */; };
 		521A1BA319733D05007EB59C /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 521A1B9E1972CCD8007EB59C /* Security.framework */; };
-		5254CB8019709C7000580A09 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5254CB7F19709C7000580A09 /* MainViewController.m */; };
 		5287F0F8197FC12B00053BC4 /* MainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5287F0F7197FC12B00053BC4 /* MainController.m */; };
 		5287F10119800BE700053BC4 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5287F10019800BE700053BC4 /* TabBarController.m */; };
 		528E0FE1197E697800DC04DB /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 528E0FE0197E697800DC04DB /* UserModel.m */; };
@@ -64,8 +63,6 @@
 		521A1B9E1972CCD8007EB59C /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		521A1BA019733265007EB59C /* Keychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Keychain.h; sourceTree = "<group>"; };
 		521A1BA119733265007EB59C /* Keychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Keychain.m; sourceTree = "<group>"; };
-		5254CB7E19709C7000580A09 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
-		5254CB7F19709C7000580A09 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		5287F0F6197FC12B00053BC4 /* MainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainController.h; sourceTree = "<group>"; };
 		5287F0F7197FC12B00053BC4 /* MainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainController.m; sourceTree = "<group>"; };
 		5287F0FF19800BE700053BC4 /* TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
@@ -167,8 +164,6 @@
 			children = (
 				5287F0FF19800BE700053BC4 /* TabBarController.h */,
 				5287F10019800BE700053BC4 /* TabBarController.m */,
-				5254CB7E19709C7000580A09 /* MainViewController.h */,
-				5254CB7F19709C7000580A09 /* MainViewController.m */,
 				52D27D761971E2B000FC93F7 /* SettingsTableViewController.h */,
 				52D27D771971E2B000FC93F7 /* SettingsTableViewController.m */,
 				52BC8A37197565DD004ED81F /* ServerSettingsViewController.h */,
@@ -478,7 +473,6 @@
 				5299D570196AB87300380AA6 /* AppDelegate.m in Sources */,
 				5299D56C196AB87300380AA6 /* main.m in Sources */,
 				52BC8A1419753B0C004ED81F /* AFHTTPSessionManager.m in Sources */,
-				5254CB8019709C7000580A09 /* MainViewController.m in Sources */,
 				52BC8A3419753B1B004ED81F /* UIWebView+AFNetworking.m in Sources */,
 				52BC8A1519753B0C004ED81F /* AFNetworkReachabilityManager.m in Sources */,
 				52BC8A3D1977AD68004ED81F /* APIClient.m in Sources */,

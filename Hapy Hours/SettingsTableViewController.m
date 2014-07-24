@@ -7,8 +7,11 @@
 //
 
 #import "SettingsTableViewController.h"
+#import "APIClient.h"
 
 @interface SettingsTableViewController ()
+
+@property (strong, nonatomic) APIClient *apiClient;
 
 @end
 
@@ -25,11 +28,40 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    _apiClient = [[APIClient alloc]init];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    if ((indexPath.section == 1)) {
+
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Logout process\nPlease Wait..."
+                                                        message:nil
+                                                       delegate:self
+                                              cancelButtonTitle:nil
+                                              otherButtonTitles:nil];
+        
+        UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        activityIndicator.frame= CGRectMake(50, 10, 37, 37);
+        activityIndicator.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin;
+        [activityIndicator startAnimating];
+        [alert setValue:activityIndicator forKey:@"accessoryView"];
+        [alert show];
+        
+        [_apiClient userLogOut:^(id result, NSError *error) {
+            if (error) {
+                [alert dismissWithClickedButtonIndex:0 animated:YES];
+            } else {
+                [alert dismissWithClickedButtonIndex:0 animated:YES];
+            }
+        }];
+    }
 }
 
 @end

@@ -60,7 +60,6 @@
         if (block) block(responseObject, nil);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"%@",error);
         [self showAlerts:@"Error to Log Out" :error];
         if (block) block(nil, error);
     }];
@@ -76,7 +75,6 @@
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager POST:@"/time"  parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        NSLog(@"JSON: %@", responseObject);
         result = [responseObject valueForKey:@"time"];
         if (block) block(result, nil);
             
@@ -94,16 +92,11 @@
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager POST:@"/start"  parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        [_defaults setBool:true forKey:KEY_TIMER_ON];
-        [_defaults synchronize];
         if (block) block(responseObject, nil);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self showAlerts:@"Error to Start" :error];
-        [_defaults setBool:false forKey:KEY_TIMER_ON];
-        [_defaults synchronize];
         if (block) block(nil, error);
-        
     }];
 }
 
@@ -114,8 +107,6 @@
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager POST:@"/stop"  parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        [_defaults setBool:false forKey:KEY_TIMER_ON];
-        [_defaults synchronize];
         if (block) block(responseObject, nil);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

@@ -28,14 +28,12 @@
     [super viewDidLoad];
     
     _user = [[UserModel alloc]init];
-    _apiClient = [[APIClient alloc]init];
     _defaults = [NSUserDefaults standardUserDefaults];
     
-//    [self startStop:_buttonStartStop];
     [self setUserUI:[_defaults boolForKey:KEY_TIMER_ON]];
 }
 
-- (void) setUserUI: (BOOL)enable {    
+- (void)setUserUI:(BOOL)enable {
     if (enable) {
         _labelStartStop.backgroundColor = [UIColor greenColor];
         [_buttonStartStop setTitle:@"Stop" forState:UIControlStateNormal];
@@ -52,6 +50,7 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated{
+    _apiClient = [[APIClient alloc]init];
     if ([_defaults boolForKey:KEY_TIMER_ON]) {
         [self startTimerLoop];
     }
@@ -63,7 +62,6 @@
         if ([_buttonStartStop.titleLabel.text isEqualToString:@"Start"]) {
             [_apiClient start:^(id result, NSError *error) {
                 if (!error) {
-                    NSLog(@"Timer start");
                     [self setUserUI:true];
                     [_defaults setBool:true forKey:KEY_TIMER_ON];
                     [_defaults synchronize];
@@ -73,7 +71,6 @@
         } else {
             [_apiClient stop:^(id result, NSError *error) {
                 if (!error){
-                    NSLog(@"NStimer stop");
                     [self setUserUI:false];
                     [_defaults setBool:false forKey:KEY_TIMER_ON];
                     [_defaults synchronize];
@@ -140,7 +137,7 @@
                                                           target:self
                                                         selector:@selector(updateTimeReports)
                                                         userInfo:nil
-                                                         repeats:YES];
+                                                        repeats:YES];
 }
 
 - (void)stopTimerLoop {
@@ -168,7 +165,7 @@
     NSString *minutes = [self intToString: ((milliseconds / (1000*60)) % 60)];
     NSString *hours = [self intToString: ((milliseconds / (1000*60*60)) % 24)];
     
-    return [NSString stringWithFormat: @"%@ : %@",hours,minutes];
+    return [NSString stringWithFormat: @"%@h %@m",hours,minutes];
 }
 
 - (float)progressBarConvert: (NSString*)millisecondsString {

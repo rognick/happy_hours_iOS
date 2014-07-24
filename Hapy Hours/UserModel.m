@@ -27,7 +27,6 @@
     if (self) {    
         keychain =[[Keychain alloc] initWithService:SERVICE_NAME withGroup:nil];
     }
-
     return self;
 }
 

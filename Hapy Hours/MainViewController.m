@@ -59,7 +59,7 @@
 
     if (![defaults boolForKey:KEY_LOGIN]) {
         
-        [apiClient userLogin:^(id result, NSError *error) {
+        [apiClient userLogin: nil :^(id result, NSError *error) {
             if (error) {_loginSwitch.on = [defaults boolForKey:KEY_LOGIN];}
             else{ _loginSwitch.on = [defaults boolForKey:KEY_LOGIN];}
         }];

@@ -10,7 +10,8 @@
 		521A1BA219733265007EB59C /* Keychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 521A1BA119733265007EB59C /* Keychain.m */; };
 		521A1BA319733D05007EB59C /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 521A1B9E1972CCD8007EB59C /* Security.framework */; };
 		5254CB8019709C7000580A09 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5254CB7F19709C7000580A09 /* MainViewController.m */; };
-		528E0FDD197E586300DC04DB /* ReportsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 528E0FDC197E586300DC04DB /* ReportsTableViewController.m */; };
+		5287F0F8197FC12B00053BC4 /* MainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5287F0F7197FC12B00053BC4 /* MainController.m */; };
+		5287F10119800BE700053BC4 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5287F10019800BE700053BC4 /* TabBarController.m */; };
 		528E0FE1197E697800DC04DB /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 528E0FE0197E697800DC04DB /* UserModel.m */; };
 		528E0FE3197E877400DC04DB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 528E0FE2197E877400DC04DB /* Images.xcassets */; };
 		5299D560196AB87300380AA6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5299D55F196AB87200380AA6 /* Foundation.framework */; };
@@ -47,7 +48,6 @@
 		52BC8A39197565DD004ED81F /* ServerSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BC8A38197565DD004ED81F /* ServerSettingsViewController.m */; };
 		52BC8A3D1977AD68004ED81F /* APIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BC8A3C1977AD68004ED81F /* APIClient.m */; };
 		52D27D781971E2B000FC93F7 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D27D771971E2B000FC93F7 /* SettingsTableViewController.m */; };
-		52D27D7D1971FD7F00FC93F7 /* LoginTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D27D7C1971FD7F00FC93F7 /* LoginTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,8 +66,10 @@
 		521A1BA119733265007EB59C /* Keychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Keychain.m; sourceTree = "<group>"; };
 		5254CB7E19709C7000580A09 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		5254CB7F19709C7000580A09 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
-		528E0FDB197E586300DC04DB /* ReportsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportsTableViewController.h; sourceTree = "<group>"; };
-		528E0FDC197E586300DC04DB /* ReportsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportsTableViewController.m; sourceTree = "<group>"; };
+		5287F0F6197FC12B00053BC4 /* MainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainController.h; sourceTree = "<group>"; };
+		5287F0F7197FC12B00053BC4 /* MainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainController.m; sourceTree = "<group>"; };
+		5287F0FF19800BE700053BC4 /* TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
+		5287F10019800BE700053BC4 /* TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
 		528E0FDF197E697800DC04DB /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
 		528E0FE0197E697800DC04DB /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
 		528E0FE2197E877400DC04DB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -132,8 +134,6 @@
 		52BC8A3C1977AD68004ED81F /* APIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIClient.m; sourceTree = "<group>"; };
 		52D27D761971E2B000FC93F7 /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewController.h; sourceTree = "<group>"; };
 		52D27D771971E2B000FC93F7 /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
-		52D27D7B1971FD7F00FC93F7 /* LoginTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginTableViewController.h; sourceTree = "<group>"; };
-		52D27D7C1971FD7F00FC93F7 /* LoginTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,16 +165,16 @@
 		5254CB7719708AAF00580A09 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				52D27D7B1971FD7F00FC93F7 /* LoginTableViewController.h */,
-				52D27D7C1971FD7F00FC93F7 /* LoginTableViewController.m */,
+				5287F0FF19800BE700053BC4 /* TabBarController.h */,
+				5287F10019800BE700053BC4 /* TabBarController.m */,
 				5254CB7E19709C7000580A09 /* MainViewController.h */,
 				5254CB7F19709C7000580A09 /* MainViewController.m */,
 				52D27D761971E2B000FC93F7 /* SettingsTableViewController.h */,
 				52D27D771971E2B000FC93F7 /* SettingsTableViewController.m */,
 				52BC8A37197565DD004ED81F /* ServerSettingsViewController.h */,
 				52BC8A38197565DD004ED81F /* ServerSettingsViewController.m */,
-				528E0FDB197E586300DC04DB /* ReportsTableViewController.h */,
-				528E0FDC197E586300DC04DB /* ReportsTableViewController.m */,
+				5287F0F6197FC12B00053BC4 /* MainController.h */,
+				5287F0F7197FC12B00053BC4 /* MainController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -186,6 +186,15 @@
 				528E0FE0197E697800DC04DB /* UserModel.m */,
 			);
 			name = "User Model";
+			sourceTree = "<group>";
+		};
+		528E0FE4197E981900DC04DB /* App Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				5299D56E196AB87300380AA6 /* AppDelegate.h */,
+				5299D56F196AB87300380AA6 /* AppDelegate.m */,
+			);
+			name = "App Delegate";
 			sourceTree = "<group>";
 		};
 		5299D553196AB87200380AA6 = {
@@ -224,9 +233,8 @@
 			isa = PBXGroup;
 			children = (
 				528E0FE2197E877400DC04DB /* Images.xcassets */,
-				5299D56E196AB87300380AA6 /* AppDelegate.h */,
-				5299D56F196AB87300380AA6 /* AppDelegate.m */,
 				5299D571196AB87300380AA6 /* Main.storyboard */,
+				528E0FE4197E981900DC04DB /* App Delegate */,
 				52BC89FE19753B0C004ED81F /* AFNetworking */,
 				52BC8A1B19753B1B004ED81F /* UIKit+AFNetworking */,
 				52BC8A3A1976C6A2004ED81F /* Networking Extension */,
@@ -450,13 +458,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				52BC8A3319753B1B004ED81F /* UIRefreshControl+AFNetworking.m in Sources */,
-				528E0FDD197E586300DC04DB /* ReportsTableViewController.m in Sources */,
 				528E0FE1197E697800DC04DB /* UserModel.m in Sources */,
 				52BC8A1719753B0C004ED81F /* AFURLConnectionOperation.m in Sources */,
-				52D27D7D1971FD7F00FC93F7 /* LoginTableViewController.m in Sources */,
 				52BC8A3219753B1B004ED81F /* UIProgressView+AFNetworking.m in Sources */,
 				521A1BA219733265007EB59C /* Keychain.m in Sources */,
 				52BC8A2F19753B1B004ED81F /* UIAlertView+AFNetworking.m in Sources */,
+				5287F0F8197FC12B00053BC4 /* MainController.m in Sources */,
 				52BC89FD19743608004ED81F /* Constants.m in Sources */,
 				52BC8A1919753B0C004ED81F /* AFURLResponseSerialization.m in Sources */,
 				52BC8A3019753B1B004ED81F /* UIButton+AFNetworking.m in Sources */,
@@ -475,6 +482,7 @@
 				52BC8A3419753B1B004ED81F /* UIWebView+AFNetworking.m in Sources */,
 				52BC8A1519753B0C004ED81F /* AFNetworkReachabilityManager.m in Sources */,
 				52BC8A3D1977AD68004ED81F /* APIClient.m in Sources */,
+				5287F10119800BE700053BC4 /* TabBarController.m in Sources */,
 				52BC8A3119753B1B004ED81F /* UIImageView+AFNetworking.m in Sources */,
 				52BC8A1319753B0C004ED81F /* AFHTTPRequestOperationManager.m in Sources */,
 			);

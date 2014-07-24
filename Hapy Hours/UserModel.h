@@ -10,4 +10,9 @@
 
 @interface UserModel : NSObject
 
+- (BOOL)isValidToken;
+- (void)setToken: (NSDictionary*)dictionary;
+- (NSString*)getToken;
+- (void)removeToken;
+
 @end

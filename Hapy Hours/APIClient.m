@@ -95,8 +95,16 @@
         if (block) block(responseObject, nil);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self showAlerts:@"Error to Start" :error];
-        if (block) block(nil, error);
+//        NSLog(@"%@  Code : %lu", [error debugDescription],[error code]);
+//        NSLog(@"===> Desc %@", [error description]);
+        NSLog(@"===> Desc %@", operation.responseString);
+        if ([operation.responseString isEqualToString:@"Timer is already running"]) {
+            if (block) block(nil, nil);
+        } else {
+            [self showAlerts:@"Error to Start" :error];
+            if (block) block(nil, error);
+        }
+        
     }];
 }
 
@@ -121,6 +129,21 @@
     
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager POST:@"/statistic"  parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        if (block) block(responseObject, nil);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showAlerts:@"Server Error" :error];
+        if (block) block(nil, error);
+    }];
+}
+
+- (void)webReports: (void(^)(id result, NSError *error))block {
+    
+
+    manager.requestSerializer =[AFHTTPRequestSerializer serializer];
+//    [manager.requestSerializer setValue:@"9phsbp038emt0lg0uistmfo8sq7" forHTTPHeaderField:@"X-Auth-Token"];
+    [manager GET:@"/users/login"  parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         if (block) block(responseObject, nil);
         

@@ -17,5 +17,6 @@
 - (void)start:(void(^)(id result, NSError *error))block;
 - (void)stop:(void(^)(id result, NSError *error))block;
 - (void)reports:(void(^)(id result, NSError *error))block;
+- (void)webReports:(void(^)(id result, NSError *error))block;
 
 @end

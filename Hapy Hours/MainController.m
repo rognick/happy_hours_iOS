@@ -129,8 +129,6 @@
 }
 
 - (void)startTimerLoop {
-    NSLog(@"NStimer Request");
-    
     [self stopTimerLoop];
     [self updateTimeReports];
     _startTimerRequest = [NSTimer scheduledTimerWithTimeInterval:60.0
@@ -148,7 +146,6 @@
 }
 
 - (void)updateTimeReports {
-    NSLog(@"Update timer");
     [_apiClient reports:^(id result, NSError *error) {
         if (result) {
             _dayTotalLabel.text   = [self timeConvertor:[result valueForKeyPath:@"daily"]];

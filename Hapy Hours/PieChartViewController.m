@@ -34,16 +34,12 @@
         [_slices addObject:one];
     }
     
-    
     [self.pieChart setDelegate:self];
     [self.pieChart setDataSource:self];
-    //    [self.pieChartRight setPieCenter:CGPointMake(100, 80)];
     [self.pieChart setLabelFont:[UIFont fontWithName:@"DBLCDTempBlack" size:14]];
     [self.pieChart setAnimationSpeed:2.0];
     [self.pieChart setShowPercentage:NO];
     [self.pieChart setLabelColor:[UIColor blackColor]];
-    
-    //    [self.percentageLabel.layer setCornerRadius:90];
     
     self.sliceColors =[NSArray arrayWithObjects:
                        [UIColor colorWithRed:246/255.0 green:0/255.0 blue:0/255.0 alpha:1],

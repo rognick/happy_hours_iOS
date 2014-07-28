@@ -126,7 +126,16 @@
 {
     NSLog(@"did select slice at index %lu",(unsigned long)index);
 //    self.label.text = [NSString stringWithFormat:@"%@",[self.slices objectAtIndex:index]];
+    [self showChartInfo:[NSString stringWithFormat:@"%@",[self.slices objectAtIndex:index]] :@"Bla bal"];
 }
 
+- (void)showChartInfo:(NSString*)title :(NSString*)message {
+    UIAlertView *chartInfo = [[UIAlertView alloc] initWithTitle:title
+                                                        message:message
+                                                       delegate:nil
+                                              cancelButtonTitle:@"Ok"
+                                              otherButtonTitles:nil];
+    [chartInfo show];
+}
 
 @end

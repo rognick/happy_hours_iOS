@@ -45,6 +45,7 @@
             if (block) block(responseObject, nil);
             
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [user removeToken];
             [self showAlerts:@"Error Login" :error];
             if (block) block(nil, error);
         }];
@@ -60,6 +61,7 @@
         if (block) block(responseObject, nil);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [user removeToken];
         [self showAlerts:@"Error to Log Out" :error];
         if (block) block(nil, error);
     }];
@@ -95,16 +97,12 @@
         if (block) block(responseObject, nil);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        NSLog(@"%@  Code : %lu", [error debugDescription],[error code]);
-//        NSLog(@"===> Desc %@", [error description]);
-        NSLog(@"===> Desc %@", operation.responseString);
         if ([operation.responseString isEqualToString:@"Timer is already running"]) {
             if (block) block(nil, nil);
         } else {
             [self showAlerts:@"Error to Start" :error];
             if (block) block(nil, error);
         }
-        
     }];
 }
 

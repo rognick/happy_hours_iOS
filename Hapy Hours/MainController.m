@@ -7,8 +7,8 @@
 //
 
 #import "MainController.h"
-#include "UserModel.h"
-#include "APIClient.h"
+#import "UserModel.h"
+#import "APIClient.h"
 #import "Constants.h"
 
 @interface MainController ()
@@ -37,11 +37,11 @@
     if (enable) {
         _labelStartStop.backgroundColor = [UIColor greenColor];
         [_buttonStartStop setTitle:@"Stop" forState:UIControlStateNormal];
-        [_buttonStartStop setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+//        [_buttonStartStop setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
     } else {
-        _labelStartStop.backgroundColor = [UIColor redColor];
+        _labelStartStop.backgroundColor = [UIColor colorWithRed:245/255.0 green:131/255.0 blue:0/255.0 alpha:1];
         [_buttonStartStop setTitle:@"Start" forState:UIControlStateNormal];
-        [_buttonStartStop setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+//        [_buttonStartStop setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     }
 }
 
@@ -51,7 +51,7 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     _apiClient = [[APIClient alloc]init];
-    if ([_defaults boolForKey:KEY_TIMER_ON]) {
+    if ([_defaults boolForKey:KEY_TIMER_ON] && _user.isValidToken) {
         [self startTimerLoop];
     }
 }
@@ -151,7 +151,6 @@
     NSLog(@"Update timer");
     [_apiClient reports:^(id result, NSError *error) {
         if (result) {
-            NSLog(@"%@",result);
             _dayTotalLabel.text   = [self timeConvertor:[result valueForKeyPath:@"daily"]];
             _weekTotalLabel.text  = [self timeConvertor:[result valueForKeyPath:@"weekly"]];
             _monthTotalLabel.text = [self timeConvertor:[result valueForKeyPath:@"monthly"]];

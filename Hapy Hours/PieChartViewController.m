@@ -7,6 +7,7 @@
 //
 
 #import "PieChartViewController.h"
+#import "APIClient.h"
 
 @implementation PieChartViewController
 @synthesize pieChart;
@@ -23,17 +24,7 @@
 {
     [super viewDidLoad];
     self.slices = [NSMutableArray arrayWithCapacity:3];
-    
-    for(int i = 0; i < 3; i ++)
-    {
-        //        NSNumber *one = [NSNumber numberWithInt:rand()%60+20];
-        NSNumber *one; //= [NSNumber numberWithInt:20];
-        if (i == 0)  one = [NSNumber numberWithInt:160];
-        if (i == 1)  one = [NSNumber numberWithInt:20];
-        if (i == 2)  one = [NSNumber numberWithInt:20];
-        [_slices addObject:one];
-    }
-    
+ 
     [self.pieChart setDelegate:self];
     [self.pieChart setDataSource:self];
     [self.pieChart setLabelFont:[UIFont fontWithName:@"DBLCDTempBlack" size:14]];
@@ -44,10 +35,9 @@
     self.sliceColors =[NSArray arrayWithObjects:
                        [UIColor colorWithRed:246/255.0 green:0/255.0 blue:0/255.0 alpha:1],
                        [UIColor colorWithRed:129/255.0 green:195/255.0 blue:29/255.0 alpha:1],
-                       [UIColor colorWithRed:62/255.0 green:173/255.0 blue:219/255.0 alpha:1],
-                       [UIColor colorWithRed:229/255.0 green:66/255.0 blue:115/255.0 alpha:1],
-                       [UIColor colorWithRed:248/255.0 green:141/255.0 blue:139/255.0 alpha:1],nil];
-    
+                       [UIColor colorWithRed:62/255.0 green:173/255.0 blue:219/255.0 alpha:1],nil];
+//    [self chartDataProcessing:@"192" :@"200"];
+//    [self requestChartData];
 }
 
 - (void)viewDidUnload
@@ -64,6 +54,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    [self requestChartData];
     [self.pieChart reloadData];
 }
 
@@ -121,17 +112,77 @@
 - (void)pieChart:(XYPieChart *)pieChart didSelectSliceAtIndex:(NSUInteger)index
 {
     NSLog(@"did select slice at index %lu",(unsigned long)index);
-//    self.label.text = [NSString stringWithFormat:@"%@",[self.slices objectAtIndex:index]];
-    [self showChartInfo:[NSString stringWithFormat:@"%@",[self.slices objectAtIndex:index]] :@"Bla bal"];
+    switch (index) {
+        case 0:
+            [self showChartInfo:@"Hours should work" :index];
+            break;
+        case 1:
+            [self showChartInfo:@"Hours worked" :index];
+            break;
+        case 2 :
+            [self showChartInfo:@"Overtime" :index];
+            break;
+        default:
+            break;
+    }
 }
 
-- (void)showChartInfo:(NSString*)title :(NSString*)message {
+- (void)showChartInfo:(NSString*)title :(NSUInteger)index{
     UIAlertView *chartInfo = [[UIAlertView alloc] initWithTitle:title
-                                                        message:message
+                                                        message:[self chartMessage:index]
                                                        delegate:nil
                                               cancelButtonTitle:@"Ok"
                                               otherButtonTitles:nil];
     [chartInfo show];
+}
+
+- (NSString*)chartMessage:(NSUInteger)index {
+    NSString *message;
+    
+    switch (index) {
+        case 0:
+            message = [NSString stringWithFormat:@"Estimated work hours\nIn a month: %@ hours\nWeek: 40 hours\nDay: 8 hours",[self.slices objectAtIndex:index]];
+            break;
+        case 1:
+            message = [NSString stringWithFormat:@"Month: %@ hours\nWeek: 40 hours\nDay: 8 hours",[self.slices objectAtIndex:index]];
+            break;
+        case 2 :
+            message = [NSString stringWithFormat:@"Estimated work hours\nIn a month: %@ hours\nWeek: 40 hours\nDay: 8 hours",[self.slices objectAtIndex:index]];
+            break;
+        default:
+            break;
+    }
+
+    return message;
+}
+
+#pragma Wait from server service from base hours
+- (void)requestChartData
+{
+    APIClient *apiClient = [[APIClient alloc]init];
+    [apiClient reports:^(id result, NSError *error) {
+        if (result) {
+            NSLog(@"%@",result);
+            [self chartDataProcessing:[result valueForKeyPath:@"timeToWork"] :[result valueForKeyPath:@"monthly"]];
+        }
+    }];
+}
+
+- (void)chartDataProcessing:(NSString*)baseHoursStr :(NSString*)workingHoursStr {
+
+    int baseHours = ([baseHoursStr intValue] / (1000*60*60));
+    int workingHours = ([workingHoursStr intValue] / (1000*60*60));
+    
+    [_slices removeAllObjects];
+    for(int i = 0; i < 3; i ++)
+    {
+        NSNumber *one = [NSNumber numberWithInt:0];
+        if ((i == 0) && ((baseHours - workingHours) > 0))  one = [NSNumber numberWithInt:(baseHours - workingHours)];
+        if (i == 1)  one = [NSNumber numberWithInt:workingHours];
+        if ((i == 2) && ((baseHours - workingHours) < 0))  one = [NSNumber numberWithInt:abs(baseHours - workingHours)];
+        [_slices addObject:one];
+    }
+    [self.pieChart reloadData];
 }
 
 @end

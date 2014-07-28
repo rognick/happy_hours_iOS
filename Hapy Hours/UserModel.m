@@ -31,7 +31,7 @@
 }
 
 #pragma Token
-- (void)setToken: (NSDictionary*)dictionary {
+- (void)setToken:(NSDictionary*)dictionary {
     
     [self removeToken];
     NSString *token = [dictionary valueForKey:@"token"];
@@ -40,7 +40,7 @@
     [keychain insert:TOKEN :value];
 }
 
-- (void) removeToken {
+- (void)removeToken {
     [keychain remove:TOKEN];
 }
 
@@ -50,9 +50,7 @@
 
 - (BOOL)isValidToken {
     NSData *token = [keychain find:TOKEN];
-    
-//    return true;
-    
+
     if(token == nil) {
         return false;
     } else {

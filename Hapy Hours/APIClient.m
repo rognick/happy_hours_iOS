@@ -18,6 +18,7 @@
 @property (strong, nonatomic) AFHTTPRequestOperationManager *manager;
 @property (strong, nonatomic) NSUserDefaults *defaults;
 @property (strong, nonatomic) NSURL *baseURL;
+@property (strong, nonatomic) UIAlertView *alertView;
 
 @end
 
@@ -140,7 +141,6 @@
     
 
     manager.requestSerializer =[AFHTTPRequestSerializer serializer];
-//    [manager.requestSerializer setValue:@"9phsbp038emt0lg0uistmfo8sq7" forHTTPHeaderField:@"X-Auth-Token"];
     [manager GET:@"/users/login"  parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         if (block) block(responseObject, nil);
@@ -152,12 +152,16 @@
 }
 
 - (void)showAlerts: (NSString *)title :(NSError *)error{
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title
+    
+    if (_alertView.isVisible) {
+        [self.alertView dismissWithClickedButtonIndex:0 animated:YES];
+    }
+    _alertView = [[UIAlertView alloc] initWithTitle:title
                                                         message:[error localizedDescription]
                                                        delegate:nil
                                               cancelButtonTitle:@"Ok"
                                               otherButtonTitles:nil];
-    [alertView show];
+    [_alertView show];
 }
 
 @end

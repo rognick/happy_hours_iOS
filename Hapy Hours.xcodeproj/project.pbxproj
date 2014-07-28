@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		521A1BA219733265007EB59C /* Keychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 521A1BA119733265007EB59C /* Keychain.m */; };
 		521A1BA319733D05007EB59C /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 521A1B9E1972CCD8007EB59C /* Security.framework */; };
+		5276F1F51986253800225559 /* XYPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 5276F1F41986253800225559 /* XYPieChart.m */; };
+		5276F1F8198625F900225559 /* PieChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5276F1F7198625F900225559 /* PieChartViewController.m */; };
 		5287F0F8197FC12B00053BC4 /* MainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5287F0F7197FC12B00053BC4 /* MainController.m */; };
 		5287F10119800BE700053BC4 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5287F10019800BE700053BC4 /* TabBarController.m */; };
 		528E0FE1197E697800DC04DB /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 528E0FE0197E697800DC04DB /* UserModel.m */; };
@@ -63,6 +65,10 @@
 		521A1B9E1972CCD8007EB59C /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		521A1BA019733265007EB59C /* Keychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Keychain.h; sourceTree = "<group>"; };
 		521A1BA119733265007EB59C /* Keychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Keychain.m; sourceTree = "<group>"; };
+		5276F1F31986253800225559 /* XYPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPieChart.h; sourceTree = "<group>"; };
+		5276F1F41986253800225559 /* XYPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPieChart.m; sourceTree = "<group>"; };
+		5276F1F6198625F900225559 /* PieChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PieChartViewController.h; sourceTree = "<group>"; };
+		5276F1F7198625F900225559 /* PieChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PieChartViewController.m; sourceTree = "<group>"; };
 		5287F0F6197FC12B00053BC4 /* MainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainController.h; sourceTree = "<group>"; };
 		5287F0F7197FC12B00053BC4 /* MainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainController.m; sourceTree = "<group>"; };
 		5287F0FF19800BE700053BC4 /* TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
@@ -170,8 +176,19 @@
 				52BC8A38197565DD004ED81F /* ServerSettingsViewController.m */,
 				5287F0F6197FC12B00053BC4 /* MainController.h */,
 				5287F0F7197FC12B00053BC4 /* MainController.m */,
+				5276F1F6198625F900225559 /* PieChartViewController.h */,
+				5276F1F7198625F900225559 /* PieChartViewController.m */,
 			);
 			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		5276F1F21986250F00225559 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				5276F1F31986253800225559 /* XYPieChart.h */,
+				5276F1F41986253800225559 /* XYPieChart.m */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 		528E0FDE197E694900DC04DB /* User Model */ = {
@@ -227,6 +244,7 @@
 		5299D565196AB87300380AA6 /* Hapy Hours */ = {
 			isa = PBXGroup;
 			children = (
+				5276F1F21986250F00225559 /* Controller */,
 				528E0FE2197E877400DC04DB /* Images.xcassets */,
 				5299D571196AB87300380AA6 /* Main.storyboard */,
 				528E0FE4197E981900DC04DB /* App Delegate */,
@@ -473,11 +491,13 @@
 				5299D570196AB87300380AA6 /* AppDelegate.m in Sources */,
 				5299D56C196AB87300380AA6 /* main.m in Sources */,
 				52BC8A1419753B0C004ED81F /* AFHTTPSessionManager.m in Sources */,
+				5276F1F8198625F900225559 /* PieChartViewController.m in Sources */,
 				52BC8A3419753B1B004ED81F /* UIWebView+AFNetworking.m in Sources */,
 				52BC8A1519753B0C004ED81F /* AFNetworkReachabilityManager.m in Sources */,
 				52BC8A3D1977AD68004ED81F /* APIClient.m in Sources */,
 				5287F10119800BE700053BC4 /* TabBarController.m in Sources */,
 				52BC8A3119753B1B004ED81F /* UIImageView+AFNetworking.m in Sources */,
+				5276F1F51986253800225559 /* XYPieChart.m in Sources */,
 				52BC8A1319753B0C004ED81F /* AFHTTPRequestOperationManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

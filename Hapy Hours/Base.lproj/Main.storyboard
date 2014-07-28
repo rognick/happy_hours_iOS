@@ -149,6 +149,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="bZg-sl-9rJ" kind="relationship" relationship="viewControllers" id="w9p-rn-KiS"/>
+                        <segue destination="LgE-KK-vYt" kind="relationship" relationship="viewControllers" id="8CH-wn-zsk"/>
                         <segue destination="Oem-WI-IqI" kind="relationship" relationship="viewControllers" id="dM2-PY-gg0"/>
                     </connections>
                 </tabBarController>
@@ -172,6 +173,45 @@
             </objects>
             <point key="canvasLocation" x="-1093" y="1365"/>
         </scene>
+        <!--Pie Chart View Controller - Chart-->
+        <scene sceneID="oWE-NH-lgC">
+            <objects>
+                <viewController id="LgE-KK-vYt" customClass="PieChartViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="SBx-eF-UHY">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="Mf5-hI-RjY" customClass="XYPieChart">
+                                <rect key="frame" x="0.0" y="70" width="320" height="301"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="20y-Sd-SP8">
+                                <rect key="frame" x="208" y="379" width="51" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="showSlicePercentage:" destination="LgE-KK-vYt" eventType="valueChanged" id="NFE-Rw-34r"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lC1-cE-9nF">
+                                <rect key="frame" x="265" y="379" width="29" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="27"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Chart" image="line_chart-32" id="tKc-VW-WHb"/>
+                    <connections>
+                        <outlet property="pieChart" destination="Mf5-hI-RjY" id="HdR-dQ-3gr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vgw-lD-nTs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1109" y="2105"/>
+        </scene>
         <!--Main Controller - Happy Hours-->
         <scene sceneID="FbN-IV-yxn">
             <objects>
@@ -183,7 +223,7 @@
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tLt-eK-9mO">
                                 <rect key="frame" x="60" y="121" width="200" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="1" green="0.28820711678832112" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
@@ -344,6 +384,7 @@
     <resources>
         <image name="external-26" width="26" height="26"/>
         <image name="home-32" width="32" height="32"/>
+        <image name="line_chart-32" width="32" height="32"/>
         <image name="settings-32" width="32" height="32"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

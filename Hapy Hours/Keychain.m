@@ -20,7 +20,6 @@
         if(group_)
             group = [NSString stringWithString:group_];
     }
-    
     return  self;
 }
 -(NSMutableDictionary*) prepareDict:(NSString *) key

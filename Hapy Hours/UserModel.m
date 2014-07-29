@@ -33,7 +33,6 @@
 #pragma Token
 - (void)setToken:(NSDictionary*)dictionary {
     
-    [self removeToken];
     NSString *token = [dictionary valueForKey:@"token"];
     NSData *value = [token dataUsingEncoding:NSUTF8StringEncoding];
     

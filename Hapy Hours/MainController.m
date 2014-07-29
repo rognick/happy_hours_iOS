@@ -30,7 +30,7 @@
     _user = [[UserModel alloc]init];
     _defaults = [NSUserDefaults standardUserDefaults];
     
-    [self setUserUI:[_defaults boolForKey:KEY_TIMER_ON]];
+    
 }
 
 - (void)setUserUI:(BOOL)enable {
@@ -51,8 +51,12 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     _apiClient = [[APIClient alloc]init];
+    [self setUserUI:[_defaults boolForKey:KEY_TIMER_ON]];
+    
     if ([_defaults boolForKey:KEY_TIMER_ON] && _user.isValidToken) {
         [self startTimerLoop];
+    } else {
+        [self stopTimerLoop];
     }
 }
 
@@ -148,6 +152,7 @@
 - (void)updateTimeReports {
     [_apiClient reports:^(id result, NSError *error) {
         if (result) {
+            NSLog(@"%@",result);
             _dayTotalLabel.text   = [self timeConvertor:[result valueForKeyPath:@"daily"]];
             _weekTotalLabel.text  = [self timeConvertor:[result valueForKeyPath:@"weekly"]];
             _monthTotalLabel.text = [self timeConvertor:[result valueForKeyPath:@"monthly"]];

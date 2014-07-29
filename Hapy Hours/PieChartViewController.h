@@ -11,7 +11,9 @@
 
 @interface PieChartViewController : UIViewController <XYPieChartDelegate, XYPieChartDataSource>
 @property (weak, nonatomic) IBOutlet XYPieChart *pieChart;
-@property(nonatomic, strong) NSMutableArray *slices;
-@property(nonatomic, strong) NSArray        *sliceColors;
+@property (nonatomic, strong) NSMutableArray *slices;
+@property (nonatomic, strong) NSArray        *sliceColors;
+@property (nonatomic, strong) NSString       *worketDays;
+@property (weak, nonatomic) IBOutlet UISwitch *switchPercent;
 
 @end

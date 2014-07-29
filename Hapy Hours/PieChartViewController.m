@@ -10,6 +10,7 @@
 #import "APIClient.h"
 
 @implementation PieChartViewController
+@synthesize worketDays;
 @synthesize pieChart;
 @synthesize sliceColors;
 @synthesize slices = _slices;
@@ -17,12 +18,13 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Release any cached data, images, etc that aren't in use.
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    _switchPercent.transform = CGAffineTransformMakeScale(1, 0.70);
+    
     self.slices = [NSMutableArray arrayWithCapacity:3];
  
     [self.pieChart setDelegate:self];
@@ -36,8 +38,8 @@
                        [UIColor colorWithRed:246/255.0 green:0/255.0 blue:0/255.0 alpha:1],
                        [UIColor colorWithRed:129/255.0 green:195/255.0 blue:29/255.0 alpha:1],
                        [UIColor colorWithRed:62/255.0 green:173/255.0 blue:219/255.0 alpha:1],nil];
-//    [self chartDataProcessing:@"192" :@"200"];
-//    [self requestChartData];
+//    [self chartDataProcessing:@"604800000" :@"720000000"];
+//    [self.pieChart reloadData];
 }
 
 - (void)viewDidUnload
@@ -140,14 +142,31 @@
     NSString *message;
     
     switch (index) {
-        case 0:
-            message = [NSString stringWithFormat:@"Estimated work hours\nIn a month: %@ hours\nWeek: 40 hours\nDay: 8 hours",[self.slices objectAtIndex:index]];
+        case 0:{
+            
+            int worketDayLeft = (int)[self workingDays];
+            int month = [[self.slices objectAtIndex:index] intValue];
+            int week = 0;
+            int day   = month/worketDayLeft;
+            if (worketDayLeft > 4) {
+                week  = month/((worketDayLeft/5));
+            }
+            
+            message = [NSString stringWithFormat:@"Until the end of the month: %dh\nPer week: %dh\nPer day: 8h + %dh",month,week,day];
+        }
             break;
-        case 1:
-            message = [NSString stringWithFormat:@"Month: %@ hours\nWeek: 40 hours\nDay: 8 hours",[self.slices objectAtIndex:index]];
+        case 1: {
+            int worketDayInt = [worketDays intValue];
+            int totalHours = [[self.slices objectAtIndex:index] intValue];
+            int hours = (totalHours/worketDayInt)%24;
+            int min   = (totalHours*60/worketDayInt)%60;
+            
+            message = [NSString stringWithFormat:@"Worket Days: %@\n\nThis month: %@ hours\nPer day: %dh %dm",worketDays,[self.slices objectAtIndex:index],hours,min];
+        }
             break;
         case 2 :
-            message = [NSString stringWithFormat:@"Estimated work hours\nIn a month: %@ hours\nWeek: 40 hours\nDay: 8 hours",[self.slices objectAtIndex:index]];
+            
+            message = [NSString stringWithFormat:@"Total hours work: %@h",[self.slices objectAtIndex:index]];
             break;
         default:
             break;
@@ -162,7 +181,7 @@
     APIClient *apiClient = [[APIClient alloc]init];
     [apiClient reports:^(id result, NSError *error) {
         if (result) {
-            NSLog(@"%@",result);
+            worketDays = [result valueForKeyPath:@"workedDays"];
             [self chartDataProcessing:[result valueForKeyPath:@"timeToWork"] :[result valueForKeyPath:@"monthly"]];
         }
     }];
@@ -178,11 +197,45 @@
     {
         NSNumber *one = [NSNumber numberWithInt:0];
         if ((i == 0) && ((baseHours - workingHours) > 0))  one = [NSNumber numberWithInt:(baseHours - workingHours)];
-        if (i == 1)  one = [NSNumber numberWithInt:workingHours];
+        if (i == 1)                                        one = [NSNumber numberWithInt:workingHours];
         if ((i == 2) && ((baseHours - workingHours) < 0))  one = [NSNumber numberWithInt:abs(baseHours - workingHours)];
         [_slices addObject:one];
     }
     [self.pieChart reloadData];
 }
+
+- (NSInteger)workingDays {
+    
+    NSInteger count = 0;
+    NSInteger sunday = 1;
+    NSInteger saturday = 7;
+    
+    NSDateComponents *oneDay = [[NSDateComponents alloc] init];
+    [oneDay setDay:1];
+    
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    
+    NSDate *currentDate = [NSDate date];
+    
+    NSDateComponents *dateComp = [calendar components:NSDayCalendarUnit fromDate:[NSDate date]];
+    NSDate *toDate = [[NSDate alloc] init];
+    NSDateComponents *daysToEnd = [[NSDateComponents alloc] init];
+    [daysToEnd setDay:[[calendar components: NSWeekCalendarUnit fromDate:[NSDate date]] week] - [dateComp day]];
+    toDate = [calendar dateByAddingComponents:daysToEnd toDate:currentDate options:0];
+    
+    while (([currentDate compare:toDate] == NSOrderedSame) || ([currentDate compare:toDate] == NSOrderedAscending)) {
+        
+        NSDateComponents *dateComponents = [calendar components:NSWeekdayCalendarUnit | NSDayCalendarUnit fromDate:currentDate];
+
+        if (dateComponents.weekday != saturday && dateComponents.weekday != sunday) {
+            count++;
+        }
+        currentDate = [calendar dateByAddingComponents:oneDay
+                                                toDate:currentDate
+                                               options:0];
+    }
+    return count;
+}
+
 
 @end

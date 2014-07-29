@@ -8,6 +8,7 @@
 
 #import "SettingsTableViewController.h"
 #import "APIClient.h"
+#import "Constants.h"
 
 @interface SettingsTableViewController ()
 
@@ -28,6 +29,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
     _apiClient = [[APIClient alloc]init];
 }
 
@@ -38,6 +42,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     if ((indexPath.section == 1)) {
 
@@ -56,8 +61,13 @@
         
         [_apiClient userLogOut:^(id result, NSError *error) {
             if (error) {
+                [defaults setBool:false forKey:KEY_TIMER_ON];
+                [defaults synchronize];
                 [alert dismissWithClickedButtonIndex:0 animated:YES];
+                
             } else {
+                [defaults setBool:false forKey:KEY_TIMER_ON];
+                [defaults synchronize];
                 [alert dismissWithClickedButtonIndex:0 animated:YES];
             }
         }];

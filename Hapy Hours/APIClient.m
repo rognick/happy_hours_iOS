@@ -62,29 +62,16 @@
         if (block) block(responseObject, nil);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [user removeToken];
-        [self showAlerts:@"Error to Log Out" :error];
-        if (block) block(nil, error);
-    }];
-}
-
-
-- (void)curentTime: curentTime complete:(void(^)(id result, NSError *error))block {
-    
-    __block NSString *result;
-    
-    NSDictionary *params = @{ @"token" : [user getToken]};
-    
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager POST:@"/time"  parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+#warning ---
+        NSLog(@"LogOut %@",operation.responseString);
         
-        result = [responseObject valueForKey:@"time"];
-        if (block) block(result, nil);
-            
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self showAlerts:@"Error get curent time" :error];
+        if ([operation.responseString isEqualToString:@"Error: cant find user with such token"]) {
+            [self sessionExpiry];
+            block(nil, error);
+        } else {
+            [self showAlerts:@"Error to Log Out" :error];
         if (block) block(nil, error);
-        
+        }
     }];
 }
 
@@ -98,7 +85,11 @@
         if (block) block(responseObject, nil);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        if ([operation.responseString isEqualToString:@"Timer is already running"]) {
+#warning --
+        NSLog(@"Start %@",operation.responseString);
+        if ([operation.responseString isEqualToString:@"Error: cant find user with such token"]) {
+            [self sessionExpiry];
+        } else if ([operation.responseString isEqualToString:@"Timer is already running"]){
             if (block) block(nil, nil);
         } else {
             [self showAlerts:@"Error to Start" :error];
@@ -117,8 +108,17 @@
         if (block) block(responseObject, nil);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self showAlerts:@"Error to Stop" :error];
-        if (block) block(nil, error);
+#warning --
+        NSLog(@"Stop %@",operation.responseString);
+        
+        if ([operation.responseString isEqualToString:@"Error: cant find user with such token"]) {
+            [self sessionExpiry];
+        } else if ([operation.responseString isEqualToString:@"Timer is not running"]){
+            block(nil, nil);
+        } else {
+            [self showAlerts:@"Error to Stop" :error];
+            block(nil, error);
+        }
     }];
 }
 
@@ -132,22 +132,16 @@
         if (block) block(responseObject, nil);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self showAlerts:@"Server Error" :error];
-        if (block) block(nil, error);
-    }];
-}
-
-- (void)webReports: (void(^)(id result, NSError *error))block {
-    
-
-    manager.requestSerializer =[AFHTTPRequestSerializer serializer];
-    [manager GET:@"/users/login"  parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+#warning --
+        NSLog(@"Reports %@",operation.responseString);
         
-        if (block) block(responseObject, nil);
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self showAlerts:@"Server Error" :error];
-        if (block) block(nil, error);
+        if ([operation.responseString isEqualToString:@"Error: cant find user with such token"]) {
+            [self sessionExpiry];
+            block(nil, error);
+        } else {
+            [self showAlerts:@"Server Error" :error];
+            if (block) block(nil, error);
+        }
     }];
 }
 
@@ -161,6 +155,20 @@
                                                        delegate:nil
                                               cancelButtonTitle:@"Ok"
                                               otherButtonTitles:nil];
+    [_alertView show];
+}
+
+- (void)sessionExpiry {
+    [user removeToken];
+    
+    if (_alertView.isVisible) {
+        [self.alertView dismissWithClickedButtonIndex:0 animated:YES];
+    }
+    _alertView = [[UIAlertView alloc] initWithTitle:@"Session token expired"
+                                            message:@"You need to start over"
+                                           delegate:nil
+                                  cancelButtonTitle:@"Ok"
+                                  otherButtonTitles:nil];
     [_alertView show];
 }
 

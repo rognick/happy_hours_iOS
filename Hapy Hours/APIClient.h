@@ -13,10 +13,8 @@
 
 - (void)userLogin:(NSDictionary *)params :(void(^)(id result, NSError *error))block;
 - (void)userLogOut:(void(^)(id result, NSError *error))block;
-- (void)curentTime:curentTime complete:(void(^)(id result, NSError *error))block;
 - (void)start:(void(^)(id result, NSError *error))block;
 - (void)stop:(void(^)(id result, NSError *error))block;
 - (void)reports:(void(^)(id result, NSError *error))block;
-- (void)webReports:(void(^)(id result, NSError *error))block;
 
 @end

@@ -99,21 +99,8 @@
 }
 
 #pragma mark - XYPieChart Delegate
-- (void)pieChart:(XYPieChart *)pieChart willSelectSliceAtIndex:(NSUInteger)index
-{
-    NSLog(@"will select slice at index %lu",(unsigned long)index);
-}
-- (void)pieChart:(XYPieChart *)pieChart willDeselectSliceAtIndex:(NSUInteger)index
-{
-    NSLog(@"will deselect slice at index %lu",(unsigned long)index);
-}
-- (void)pieChart:(XYPieChart *)pieChart didDeselectSliceAtIndex:(NSUInteger)index
-{
-    NSLog(@"did deselect slice at index %lu",(unsigned long)index);
-}
 - (void)pieChart:(XYPieChart *)pieChart didSelectSliceAtIndex:(NSUInteger)index
 {
-    NSLog(@"did select slice at index %lu",(unsigned long)index);
     switch (index) {
         case 0:
             [self showChartInfo:@"Hours should work" :index];
@@ -175,7 +162,6 @@
     return message;
 }
 
-#pragma Wait from server service from base hours
 - (void)requestChartData
 {
     APIClient *apiClient = [[APIClient alloc]init];
@@ -236,6 +222,5 @@
     }
     return count;
 }
-
 
 @end

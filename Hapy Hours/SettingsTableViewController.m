@@ -9,6 +9,7 @@
 #import "SettingsTableViewController.h"
 #import "APIClient.h"
 #import "Constants.h"
+#import "UserModel.h"
 
 @interface SettingsTableViewController ()
 
@@ -42,36 +43,32 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    if ((indexPath.section == 1)) {
-
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Logout process\nPlease Wait..."
-                                                        message:nil
-                                                       delegate:self
-                                              cancelButtonTitle:nil
-                                              otherButtonTitles:nil];
-        
-        UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-        activityIndicator.frame= CGRectMake(50, 10, 37, 37);
-        activityIndicator.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin;
-        [activityIndicator startAnimating];
-        [alert setValue:activityIndicator forKey:@"accessoryView"];
-        [alert show];
-        
-        [_apiClient userLogOut:^(id result, NSError *error) {
-            if (error) {
-                [defaults setBool:false forKey:KEY_TIMER_ON];
-                [defaults synchronize];
-                [alert dismissWithClickedButtonIndex:0 animated:YES];
-                
-            } else {
-                [defaults setBool:false forKey:KEY_TIMER_ON];
-                [defaults synchronize];
-                [alert dismissWithClickedButtonIndex:0 animated:YES];
-            }
-        }];
+    switch (indexPath.section) {
+        case 1:{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Logout process\nPlease Wait..."
+                                                            message:nil
+                                                           delegate:self
+                                                  cancelButtonTitle:nil
+                                                  otherButtonTitles:nil];
+            
+            UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+            activityIndicator.frame= CGRectMake(50, 10, 37, 37);
+            activityIndicator.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin;
+            [activityIndicator startAnimating];
+            [alert setValue:activityIndicator forKey:@"accessoryView"];
+            [alert show];
+            
+            [_apiClient userLogOut:^(id result, NSError *error) {
+                if (error) {
+                    [alert dismissWithClickedButtonIndex:0 animated:YES];
+                } else {
+                    [alert dismissWithClickedButtonIndex:0 animated:YES];
+                }
+            }];
+        }break;
+            
+        default:
+            break;
     }
 }
-
 @end

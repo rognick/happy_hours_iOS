@@ -18,4 +18,9 @@ extern NSString* const SERVER_HOST;
 extern NSString* const SERVER_PORT;
 extern NSString* const TOKEN;
 
+/*------------Server errors-----------------------------*/
+extern NSString* const SERVER_SESSION_EXPIRY;
+extern NSString* const SERVER_TIMER_ON;
+extern NSString* const SERVER_TIMER_OFF;
+
 @end

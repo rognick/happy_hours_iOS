@@ -18,5 +18,10 @@ NSString* const SERVER_HOST     = @"SERVER_HOST";
 NSString* const SERVER_PORT     = @"SERVER_PORT";
 NSString* const TOKEN           = @"TOKEN";
 
+/*------------Server errors-----------------------------*/
+NSString* const SERVER_SESSION_EXPIRY = @"SessionExpiry";
+NSString* const SERVER_TIMER_ON       = @"TimerON";
+NSString* const SERVER_TIMER_OFF      = @"TimerOff";
+
 
 @end

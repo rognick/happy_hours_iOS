@@ -103,8 +103,8 @@
 - (void)startTimerLoop {
     [self stopTimerLoop];
     [self updateTimeReports];
-#warning set timer loop
-    _startTimerRequest = [NSTimer scheduledTimerWithTimeInterval:1.0
+
+    _startTimerRequest = [NSTimer scheduledTimerWithTimeInterval:60.0
                                                           target:self
                                                         selector:@selector(updateTimeReports)
                                                         userInfo:nil
@@ -119,7 +119,6 @@
 }
 
 - (void)updateTimeReports {
-    
     [apiClient reports:[user getToken] success:^(id response) {
         _dayTotalLabel.text   = [self timeConvertor:[response valueForKeyPath:@"daily"]];
         _weekTotalLabel.text  = [self timeConvertor:[response valueForKeyPath:@"weekly"]];

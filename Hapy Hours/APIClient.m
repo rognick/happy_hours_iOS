@@ -9,12 +9,11 @@
 #import "APIClient.h"
 #import "Keychain.h"
 #import "Constants.h"
-#import "UserModel.h"
+#import "MainController.h"
 
 
 @interface APIClient ()
 
-@property (strong, nonatomic) UserModel *user;
 @property (strong, nonatomic) AFHTTPRequestOperationManager *manager;
 @property (strong, nonatomic) NSUserDefaults *defaults;
 @property (strong, nonatomic) NSURL *baseURL;
@@ -23,13 +22,11 @@
 @end
 
 @implementation APIClient
-@synthesize user;
 @synthesize manager;
 @synthesize baseURL;
 
 - (APIClient*)init {
     
-    user = [[UserModel alloc]init];
     _defaults = [NSUserDefaults standardUserDefaults];
     
     NSString *stringURL = [NSString stringWithFormat: @"http://%@:%@",[_defaults stringForKey:SERVER_HOST],
@@ -39,137 +36,97 @@
     return self;
 }
 
-- (void)userLogin:(NSDictionary *)params :(void(^)(id result, NSError *error))block;{
-
+- (void)userLogin:(NSDictionary *)params
+          success:(void(^)(id response))success
+          failure:(void(^)(NSError *error))failure
+{
         manager.requestSerializer = [AFJSONRequestSerializer serializer];
         [manager POST:@"/login" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            if (block) block(responseObject, nil);
+            success(responseObject);
             
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            [user removeToken];
-            [self showAlerts:@"Error Login" :error];
-            if (block) block(nil, error);
+            if ([operation.responseString isEqualToString:ERROR_UNDEFINED]) {
+                failure(nil);
+            } else {
+                failure(error);
+            }
         }];
 }
 
-- (void)userLogOut: (void(^)(id result, NSError *error))block {
-    
-    NSDictionary *params = @{ @"token" : [user getToken]};
+- (void)userLogOut:(NSDictionary *)params
+           success:(void(^)(id response))success
+           failure:(void(^)(NSError *error))failure
+     sessionExpiry:(void(^)())sessionExpiry
+{
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager POST:@"/logout"  parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-
-        [user removeToken];
-        if (block) block(responseObject, nil);
+        success(responseObject);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-#warning ---
-        NSLog(@"LogOut %@",operation.responseString);
-        
-        if ([operation.responseString isEqualToString:@"Error: cant find user with such token"]) {
-            [self sessionExpiry];
-            block(nil, error);
+        if ([operation.responseString isEqualToString:SERVER_SESSION_EXPIRY]) {
+            sessionExpiry();
         } else {
-            [self showAlerts:@"Error to Log Out" :error];
-        if (block) block(nil, error);
+            failure(error);
         }
     }];
 }
 
-- (void)start: (void(^)(id result, NSError *error))block {
-    
-    NSDictionary *params = @{ @"token" : [user getToken]};
-    
+- (void)startTimer:(NSDictionary *)params
+           success:(void(^)(id response))success
+           failure:(void(^)(NSError *error))failure
+     sessionExpiry:(void(^)())sessionExpiry
+{
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager POST:@"/start"  parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        if (block) block(responseObject, nil);
+        success(responseObject);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-#warning --
-        NSLog(@"Start %@",operation.responseString);
-        if ([operation.responseString isEqualToString:@"Error: cant find user with such token"]) {
-            [self sessionExpiry];
-        } else if ([operation.responseString isEqualToString:@"Timer is already running"]){
-            if (block) block(nil, nil);
+        if ([operation.responseString isEqualToString:SERVER_SESSION_EXPIRY]) {
+            sessionExpiry();
+        } else if ([operation.responseString isEqualToString:SERVER_TIMER_ON]){
+            failure(nil);
         } else {
-            [self showAlerts:@"Error to Start" :error];
-            if (block) block(nil, error);
+            failure(error);
         }
     }];
 }
 
-- (void)stop: (void(^)(id result, NSError *error))block {
-    
-    NSDictionary *params = @{ @"token" : [user getToken]};
-    
+- (void)stopTimer:(NSDictionary *)params
+          success:(void(^)(id response))success
+          failure:(void(^)(NSError *error))failure
+    sessionExpiry:(void(^)())sessionExpiry
+{
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager POST:@"/stop"  parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        if (block) block(responseObject, nil);
+        success(responseObject);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-#warning --
-        NSLog(@"Stop %@",operation.responseString);
-        
-        if ([operation.responseString isEqualToString:@"Error: cant find user with such token"]) {
-            [self sessionExpiry];
-        } else if ([operation.responseString isEqualToString:@"Timer is not running"]){
-            block(nil, nil);
+        if ([operation.responseString isEqualToString:SERVER_SESSION_EXPIRY]) {
+            sessionExpiry();
+        } else if ([operation.responseString isEqualToString:SERVER_TIMER_OFF]){
+            failure(nil);
         } else {
-            [self showAlerts:@"Error to Stop" :error];
-            block(nil, error);
+            failure(error);
         }
     }];
 }
 
-- (void)reports: (void(^)(id result, NSError *error))block {
-    
-    NSDictionary *params = @{ @"token" : [user getToken]};
-    
+- (void)reports:(NSDictionary *)params
+        success:(void(^)(id response))success
+        failure:(void(^)(NSError *error))failure
+  sessionExpiry:(void(^)())sessionExpiry
+{
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager POST:@"/statistic"  parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        success(responseObject);
         
-        if (block) block(responseObject, nil);
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-#warning --
-        NSLog(@"Reports %@",operation.responseString);
-        
-        if ([operation.responseString isEqualToString:@"Error: cant find user with such token"]) {
-            [self sessionExpiry];
-            block(nil, error);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {        
+        if ([operation.responseString isEqualToString:SERVER_SESSION_EXPIRY]) {
+            sessionExpiry();
         } else {
-            [self showAlerts:@"Server Error" :error];
-            if (block) block(nil, error);
+            failure(error);
         }
     }];
-}
-
-- (void)showAlerts: (NSString *)title :(NSError *)error{
-    
-    if (_alertView.isVisible) {
-        [self.alertView dismissWithClickedButtonIndex:0 animated:YES];
-    }
-    _alertView = [[UIAlertView alloc] initWithTitle:title
-                                                        message:[error localizedDescription]
-                                                       delegate:nil
-                                              cancelButtonTitle:@"Ok"
-                                              otherButtonTitles:nil];
-    [_alertView show];
-}
-
-- (void)sessionExpiry {
-    [user removeToken];
-    
-    if (_alertView.isVisible) {
-        [self.alertView dismissWithClickedButtonIndex:0 animated:YES];
-    }
-    _alertView = [[UIAlertView alloc] initWithTitle:@"Session token expired"
-                                            message:@"You need to start over"
-                                           delegate:nil
-                                  cancelButtonTitle:@"Ok"
-                                  otherButtonTitles:nil];
-    [_alertView show];
 }
 
 @end

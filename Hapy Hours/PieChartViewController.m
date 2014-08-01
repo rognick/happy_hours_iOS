@@ -7,9 +7,10 @@
 //
 
 #import "PieChartViewController.h"
-#import "APIClient.h"
 
 @implementation PieChartViewController
+@synthesize user;
+@synthesize apiClient;
 @synthesize worketDays;
 @synthesize pieChart;
 @synthesize sliceColors;
@@ -23,7 +24,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _switchPercent.transform = CGAffineTransformMakeScale(1, 0.70);
     
     self.slices = [NSMutableArray arrayWithCapacity:3];
  
@@ -38,8 +38,11 @@
                        [UIColor colorWithRed:246/255.0 green:0/255.0 blue:0/255.0 alpha:1],
                        [UIColor colorWithRed:129/255.0 green:195/255.0 blue:29/255.0 alpha:1],
                        [UIColor colorWithRed:62/255.0 green:173/255.0 blue:219/255.0 alpha:1],nil];
-//    [self chartDataProcessing:@"604800000" :@"720000000"];
-//    [self.pieChart reloadData];
+    
+    user = [[UserModel alloc] init];
+    apiClient = [[APIClient alloc] init];
+    [self requestChartData];
+    [self.pieChart reloadData];
 }
 
 - (void)viewDidUnload
@@ -56,8 +59,10 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self requestChartData];
-    [self.pieChart reloadData];
+    
+    user = [[UserModel alloc] init];
+    apiClient = [[APIClient alloc] init];
+    [self updateSlices];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -96,6 +101,19 @@
 - (UIColor *)pieChart:(XYPieChart *)pieChart colorForSliceAtIndex:(NSUInteger)index
 {
     return [self.sliceColors objectAtIndex:(index % self.sliceColors.count)];
+}
+
+- (IBAction)updateSlices
+{
+    [_slices removeAllObjects];
+    [self.pieChart reloadData];
+    
+    double delayInSeconds = 1.7;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [self requestChartData];
+        [self.pieChart reloadData];
+    });
 }
 
 #pragma mark - XYPieChart Delegate
@@ -139,9 +157,10 @@
                 week  = month/((worketDayLeft/5));
             }
             
-            message = [NSString stringWithFormat:@"Until the end of the month: %dh\nPer week: %dh\nPer day: 8h + %dh",month,week,day];
+            message = [NSString stringWithFormat:@"Until the end of the month: %dh\nPer week: %dh\nPer day: %dh",month,week,day];
         }
             break;
+            
         case 1: {
             int worketDayInt = [worketDays intValue];
             int totalHours = [[self.slices objectAtIndex:index] intValue];
@@ -151,10 +170,11 @@
             message = [NSString stringWithFormat:@"Worket Days: %@\n\nThis month: %@ hours\nPer day: %dh %dm",worketDays,[self.slices objectAtIndex:index],hours,min];
         }
             break;
-        case 2 :
             
+        case 2 :
             message = [NSString stringWithFormat:@"Total hours work: %@h",[self.slices objectAtIndex:index]];
             break;
+            
         default:
             break;
     }
@@ -164,12 +184,13 @@
 
 - (void)requestChartData
 {
-    APIClient *apiClient = [[APIClient alloc]init];
-    [apiClient reports:^(id result, NSError *error) {
-        if (result) {
-            worketDays = [result valueForKeyPath:@"workedDays"];
-            [self chartDataProcessing:[result valueForKeyPath:@"timeToWork"] :[result valueForKeyPath:@"monthly"]];
-        }
+    [apiClient reports:[user getToken] success:^(id response) {
+        worketDays = [response valueForKeyPath:@"workedDays"];
+        [self chartDataProcessing:[response valueForKeyPath:@"timeToWork"] :[response valueForKeyPath:@"monthly"]];
+    } failure:^(NSError *error) {
+        [self showServerError:@"Server Error" :error];
+    } sessionExpiry:^{
+        [self sessionExpiry];
     }];
 }
 

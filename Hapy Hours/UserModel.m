@@ -10,8 +10,6 @@
 #import "Keychain.h"
 #import "Constants.h"
 
-#define String TOKEN = @"TOKEN";
-
 @interface UserModel()
 
 @property (strong, atomic) Keychain *keychain;
@@ -32,10 +30,10 @@
 
 #pragma Token
 - (void)setToken:(NSDictionary*)dictionary {
-    
+    [self removeToken];
     NSString *token = [dictionary valueForKey:@"token"];
     NSData *value = [token dataUsingEncoding:NSUTF8StringEncoding];
-    
+
     [keychain insert:TOKEN :value];
 }
 
@@ -43,8 +41,8 @@
     [keychain remove:TOKEN];
 }
 
-- (NSString*)getToken {
-    return [[NSString alloc] initWithData:[keychain find:TOKEN] encoding:NSUTF8StringEncoding];
+- (NSDictionary*)getToken {
+    return  @{ @"token" : [[NSString alloc] initWithData:[keychain find:TOKEN] encoding:NSUTF8StringEncoding]};
 }
 
 - (BOOL)isValidToken {

@@ -12,7 +12,7 @@
 
 - (BOOL)isValidToken;
 - (void)setToken: (NSDictionary*)dictionary;
-- (NSString*)getToken;
+- (NSDictionary*)getToken;
 - (void)removeToken;
 
 @end

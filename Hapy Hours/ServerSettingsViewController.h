@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface ServerSettingsViewController : UIViewController
+
 @property (weak, nonatomic) IBOutlet UITextField *serverIP;
 @property (weak, nonatomic) IBOutlet UITextField *serverPort;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *saveButton;

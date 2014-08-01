@@ -7,14 +7,10 @@
 //
 
 #import "MainController.h"
-#import "UserModel.h"
-#import "APIClient.h"
 #import "Constants.h"
 
 @interface MainController ()
 
-@property (strong, nonatomic) UserModel *user;
-@property (strong, nonatomic) APIClient *apiClient;
 @property (strong, nonatomic) NSUserDefaults *defaults;
 @property (strong, nonatomic) NSTimer *startTimerRequest;
 
@@ -22,26 +18,22 @@
 
 
 @implementation MainController
+@synthesize apiClient;
+@synthesize user;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    _user = [[UserModel alloc]init];
     _defaults = [NSUserDefaults standardUserDefaults];
-    
-    
 }
 
-- (void)setUserUI:(BOOL)enable {
-    if (enable) {
+- (void)setUserUI {
+    if ([_defaults boolForKey:KEY_TIMER_ON]) {
         _labelStartStop.backgroundColor = [UIColor greenColor];
         [_buttonStartStop setTitle:@"Stop" forState:UIControlStateNormal];
-//        [_buttonStartStop setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
     } else {
         _labelStartStop.backgroundColor = [UIColor colorWithRed:245/255.0 green:131/255.0 blue:0/255.0 alpha:1];
         [_buttonStartStop setTitle:@"Start" forState:UIControlStateNormal];
-//        [_buttonStartStop setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     }
 }
 
@@ -49,37 +41,39 @@
     [super didReceiveMemoryWarning];
 }
 
-- (void)viewDidAppear:(BOOL)animated{
-    _apiClient = [[APIClient alloc]init];
-    [self setUserUI:[_defaults boolForKey:KEY_TIMER_ON]];
-    
-    if ([_defaults boolForKey:KEY_TIMER_ON] && _user.isValidToken) {
-        [self startTimerLoop];
-    } else {
-        [self stopTimerLoop];
-    }
+- (void)viewDidAppear:(BOOL)animated {
+    user = [[UserModel alloc] init];
+    apiClient = [[APIClient alloc] init];
+    [self setUserUI];
+    [self setTimerLoop];
 }
 
 - (IBAction)startStop:(UIButton *)sender {
-    if (_user.isValidToken) {
+    if (user.isValidToken) {
         
         if ([_buttonStartStop.titleLabel.text isEqualToString:@"Start"]) {
-            [_apiClient start:^(id result, NSError *error) {
-                if (!error) {
-                    [self setUserUI:true];
-                    [_defaults setBool:true forKey:KEY_TIMER_ON];
-                    [_defaults synchronize];
-                    [self startTimerLoop];
-                }
+            
+            [apiClient startTimer:[user getToken] success:^(id response) {
+                [_defaults setBool:true forKey:KEY_TIMER_ON];
+                [_defaults synchronize];
+                [self setUserUI];
+                [self startTimerLoop];
+            } failure:^(NSError *error) {
+                [self showServerError:@"Error to Start Timer" :error];
+            } sessionExpiry:^{
+                [self sessionExpiry];
             }];
+            
         } else {
-            [_apiClient stop:^(id result, NSError *error) {
-                if (!error){
-                    [self setUserUI:false];
-                    [_defaults setBool:false forKey:KEY_TIMER_ON];
-                    [_defaults synchronize];
-                    [self stopTimerLoop];
-                }
+            [apiClient stopTimer:[user getToken] success:^(id response) {
+                [_defaults setBool:false forKey:KEY_TIMER_ON];
+                [_defaults synchronize];
+                [self setUserUI];
+                [self stopTimerLoop];
+            } failure:^(NSError *error) {
+                [self showServerError:@"Error to Stop Timer" :error];
+            } sessionExpiry:^{
+                [self sessionExpiry];
             }];
         }
         
@@ -88,54 +82,18 @@
     }
 }
 
-- (void)showLogin {
-    UIAlertView *logIn = [[UIAlertView alloc] initWithTitle:@"Login"
-                                                    message:@"Enter Username & Password"
-                                                   delegate:self
-                                          cancelButtonTitle:@"Cancel"
-                                          otherButtonTitles:@"Login",nil];
-
-    logIn.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
-    [logIn show];
-}
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    
-    NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
-    
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Login process\nPlease Wait..."
-                                       message:nil
-                                      delegate:self
-                             cancelButtonTitle:nil
-                             otherButtonTitles:nil];
-    
-    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    activityIndicator.frame= CGRectMake(50, 10, 37, 37);
-    activityIndicator.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin;
-    [activityIndicator startAnimating];
-    [alert setValue:activityIndicator forKey:@"accessoryView"];
-    
-    if([title isEqualToString:@"Login"])
-    {
-        [alert show];
-        NSDictionary *params = @{ @"username" : [alertView textFieldAtIndex:0].text,
-                                  @"password" : [alertView textFieldAtIndex:1].text};
-        
-        [_apiClient userLogin: params :^(id result, NSError *error) {
-            if (error) {[alert dismissWithClickedButtonIndex:0 animated:YES];}
-            else {
-                [_user setToken:result];
-                [alert dismissWithClickedButtonIndex:0 animated:YES];
-                [self startStop:_buttonStartStop];
-            }
-        }];
+- (void)setTimerLoop {
+    if ([_defaults boolForKey:KEY_TIMER_ON] && user.isValidToken) {
+        [self startTimerLoop];
+    } else {
+        [self stopTimerLoop];
     }
 }
 
 - (void)startTimerLoop {
     [self stopTimerLoop];
     [self updateTimeReports];
-    _startTimerRequest = [NSTimer scheduledTimerWithTimeInterval:60.0
+    _startTimerRequest = [NSTimer scheduledTimerWithTimeInterval:1.0
                                                           target:self
                                                         selector:@selector(updateTimeReports)
                                                         userInfo:nil
@@ -150,14 +108,18 @@
 }
 
 - (void)updateTimeReports {
-    [_apiClient reports:^(id result, NSError *error) {
-        if (result) {
-            NSLog(@"%@",result);
-            _dayTotalLabel.text   = [self timeConvertor:[result valueForKeyPath:@"daily"]];
-            _weekTotalLabel.text  = [self timeConvertor:[result valueForKeyPath:@"weekly"]];
-            _monthTotalLabel.text = [self timeConvertor:[result valueForKeyPath:@"monthly"]];
-            _progressBar.progress = [self progressBarConvert:[result valueForKeyPath:@"daily"]];
-        }
+    
+    [apiClient reports:[user getToken] success:^(id response) {
+        _dayTotalLabel.text   = [self timeConvertor:[response valueForKeyPath:@"daily"]];
+        _weekTotalLabel.text  = [self timeConvertor:[response valueForKeyPath:@"weekly"]];
+        _monthTotalLabel.text = [self timeConvertor:[response valueForKeyPath:@"monthly"]];
+        _progressBar.progress = [self progressBarConvert:[response valueForKeyPath:@"daily"]];
+    } failure:^(NSError *error) {
+        [self stopTimerLoop];
+        [self showServerError:@"Server Error" :error];
+    } sessionExpiry:^{
+        [self stopTimerLoop];
+        [self sessionExpiry];
     }];
 }
 

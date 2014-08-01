@@ -12,9 +12,9 @@
 		5276F1F51986253800225559 /* XYPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 5276F1F41986253800225559 /* XYPieChart.m */; };
 		5276F1F8198625F900225559 /* PieChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5276F1F7198625F900225559 /* PieChartViewController.m */; };
 		5287F0F8197FC12B00053BC4 /* MainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5287F0F7197FC12B00053BC4 /* MainController.m */; };
-		5287F10119800BE700053BC4 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5287F10019800BE700053BC4 /* TabBarController.m */; };
 		528E0FE1197E697800DC04DB /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 528E0FE0197E697800DC04DB /* UserModel.m */; };
 		528E0FE3197E877400DC04DB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 528E0FE2197E877400DC04DB /* Images.xcassets */; };
+		5290F667198A7E360008CDB1 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5290F666198A7E360008CDB1 /* BaseViewController.m */; };
 		5299D560196AB87300380AA6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5299D55F196AB87200380AA6 /* Foundation.framework */; };
 		5299D562196AB87300380AA6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5299D561196AB87300380AA6 /* CoreGraphics.framework */; };
 		5299D564196AB87300380AA6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5299D563196AB87300380AA6 /* UIKit.framework */; };
@@ -71,11 +71,11 @@
 		5276F1F7198625F900225559 /* PieChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PieChartViewController.m; sourceTree = "<group>"; };
 		5287F0F6197FC12B00053BC4 /* MainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainController.h; sourceTree = "<group>"; };
 		5287F0F7197FC12B00053BC4 /* MainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainController.m; sourceTree = "<group>"; };
-		5287F0FF19800BE700053BC4 /* TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
-		5287F10019800BE700053BC4 /* TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
 		528E0FDF197E697800DC04DB /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
 		528E0FE0197E697800DC04DB /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
 		528E0FE2197E877400DC04DB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		5290F665198A7E360008CDB1 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		5290F666198A7E360008CDB1 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		5299D55C196AB87200380AA6 /* Hapy Hours.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hapy Hours.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5299D55F196AB87200380AA6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5299D561196AB87300380AA6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -168,8 +168,6 @@
 		5254CB7719708AAF00580A09 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				5287F0FF19800BE700053BC4 /* TabBarController.h */,
-				5287F10019800BE700053BC4 /* TabBarController.m */,
 				52D27D761971E2B000FC93F7 /* SettingsTableViewController.h */,
 				52D27D771971E2B000FC93F7 /* SettingsTableViewController.m */,
 				52BC8A37197565DD004ED81F /* ServerSettingsViewController.h */,
@@ -178,6 +176,8 @@
 				5287F0F7197FC12B00053BC4 /* MainController.m */,
 				5276F1F6198625F900225559 /* PieChartViewController.h */,
 				5276F1F7198625F900225559 /* PieChartViewController.m */,
+				5290F665198A7E360008CDB1 /* BaseViewController.h */,
+				5290F666198A7E360008CDB1 /* BaseViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -471,6 +471,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52BC8A3319753B1B004ED81F /* UIRefreshControl+AFNetworking.m in Sources */,
+				5290F667198A7E360008CDB1 /* BaseViewController.m in Sources */,
 				528E0FE1197E697800DC04DB /* UserModel.m in Sources */,
 				52BC8A1719753B0C004ED81F /* AFURLConnectionOperation.m in Sources */,
 				52BC8A3219753B1B004ED81F /* UIProgressView+AFNetworking.m in Sources */,
@@ -495,7 +496,6 @@
 				52BC8A3419753B1B004ED81F /* UIWebView+AFNetworking.m in Sources */,
 				52BC8A1519753B0C004ED81F /* AFNetworkReachabilityManager.m in Sources */,
 				52BC8A3D1977AD68004ED81F /* APIClient.m in Sources */,
-				5287F10119800BE700053BC4 /* TabBarController.m in Sources */,
 				52BC8A3119753B1B004ED81F /* UIImageView+AFNetworking.m in Sources */,
 				5276F1F51986253800225559 /* XYPieChart.m in Sources */,
 				52BC8A1319753B0C004ED81F /* AFHTTPRequestOperationManager.m in Sources */,
@@ -564,7 +564,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Marco  Samek (AJX4295UA7)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -602,7 +603,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Winify AG (7E2665XF2R)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;

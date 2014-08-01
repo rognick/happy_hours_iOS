@@ -10,14 +10,18 @@
 #import "APIClient.h"
 #import "Constants.h"
 #import "UserModel.h"
+#import "BaseViewController.h"
 
 @interface SettingsTableViewController ()
 
 @property (strong, nonatomic) APIClient *apiClient;
+@property (strong, nonatomic) UserModel *user;
 
 @end
 
 @implementation SettingsTableViewController
+@synthesize apiClient;
+@synthesize user;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -33,11 +37,11 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    _apiClient = [[APIClient alloc]init];
+    user = [[UserModel alloc] init];
+    apiClient = [[APIClient alloc] init];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
 }
 
@@ -45,6 +49,8 @@
 {
     switch (indexPath.section) {
         case 1:{
+            
+            BaseViewController *base = [[BaseViewController alloc] init];
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Logout process\nPlease Wait..."
                                                             message:nil
                                                            delegate:self
@@ -58,13 +64,17 @@
             [alert setValue:activityIndicator forKey:@"accessoryView"];
             [alert show];
             
-            [_apiClient userLogOut:^(id result, NSError *error) {
-                if (error) {
-                    [alert dismissWithClickedButtonIndex:0 animated:YES];
-                } else {
-                    [alert dismissWithClickedButtonIndex:0 animated:YES];
-                }
+            [apiClient userLogOut:[user getToken] success:^(id response) {
+                [alert dismissWithClickedButtonIndex:0 animated:YES];
+                [user removeToken];
+            } failure:^(NSError *error) {
+                [alert dismissWithClickedButtonIndex:0 animated:YES];
+                [base showServerError:@"Error LogOut" :error];
+            } sessionExpiry:^{
+                [alert dismissWithClickedButtonIndex:0 animated:YES];
+                [base sessionExpiry];
             }];
+            
         }break;
             
         default:

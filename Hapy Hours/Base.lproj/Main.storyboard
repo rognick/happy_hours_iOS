@@ -49,7 +49,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="export-32" id="Qdb-tW-bCP">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logout-Spotlight-40" id="Qdb-tW-bCP">
                                                     <rect key="frame" x="22" y="4" width="35" height="35"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
@@ -139,7 +139,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="yaw-fI-fRk">
             <objects>
-                <tabBarController definesPresentationContext="YES" id="wnE-Yc-eQ7" customClass="TabBarController" sceneMemberID="viewController">
+                <tabBarController definesPresentationContext="YES" id="wnE-Yc-eQ7" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="d01-8r-bYv">
@@ -161,7 +161,7 @@
         <scene sceneID="IKa-PM-35d">
             <objects>
                 <navigationController definesPresentationContext="YES" id="Oem-WI-IqI" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" image="settings-32" id="Tpz-ch-75Y"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="settings-Spotlight-40" id="Tpz-ch-75Y"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Bfy-1P-0bN">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -217,11 +217,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Chart" image="line_chart-32" id="tKc-VW-WHb"/>
+                    <tabBarItem key="tabBarItem" title="Chart" image="line_chart-Spotlight-40" id="tKc-VW-WHb"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="pieChart" destination="Mf5-hI-RjY" id="HdR-dQ-3gr"/>
-                        <outlet property="switchPercent" destination="20y-Sd-SP8" id="L4u-zC-HC1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vgw-lD-nTs" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -237,26 +236,26 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tLt-eK-9mO">
-                                <rect key="frame" x="60" y="84" width="200" height="200"/>
+                                <rect key="frame" x="50" y="88" width="220" height="220"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.28820711678832112" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="100"/>
+                                        <integer key="value" value="110"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UDN-hg-mSX">
-                                <rect key="frame" x="60" y="184" width="200" height="100"/>
+                                <rect key="frame" x="50" y="198" width="220" height="110"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cM1-dX-hBQ">
-                                <rect key="frame" x="60" y="84" width="200" height="200"/>
+                                <rect key="frame" x="50" y="88" width="220" height="220"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                 <inset key="contentEdgeInsets" minX="0.0" minY="50" maxX="0.0" maxY="0.0"/>
@@ -271,14 +270,14 @@
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dWO-po-zfl">
-                                <rect key="frame" x="90" y="119" width="140" height="43"/>
+                                <rect key="frame" x="90" y="123" width="140" height="43"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DAY TOTAL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="CFw-lq-UAH">
-                                <rect key="frame" x="116" y="95" width="89" height="21"/>
+                                <rect key="frame" x="116" y="99" width="89" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -287,7 +286,7 @@
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sYp-ox-8Tt">
                                 <rect key="frame" x="20" y="341" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -314,7 +313,7 @@
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ehb-qx-D77">
                                 <rect key="frame" x="200" y="341" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -339,29 +338,25 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" progress="0.5" id="stD-It-bmS">
-                                <rect key="frame" x="60" y="254" width="200" height="3"/>
+                                <rect key="frame" x="50" y="258" width="220" height="3"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="progressTintColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="trackTintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </progressView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0h" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="R8e-sC-n8G">
-                                <rect key="frame" x="60" y="235" width="42" height="21"/>
+                                <rect key="frame" x="50" y="239" width="42" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8h" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Lf8-aK-CPE">
-                                <rect key="frame" x="216" y="235" width="42" height="21"/>
+                                <rect key="frame" x="227" y="239" width="42" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="CGo-4C-nYh">
-                                <rect key="frame" x="254" y="66" width="46" height="39"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -371,7 +366,6 @@
                         <outlet property="buttonStartStop" destination="cM1-dX-hBQ" id="27T-Q1-f19"/>
                         <outlet property="dayTotalLabel" destination="dWO-po-zfl" id="4uJ-Qu-bcH"/>
                         <outlet property="labelStartStop" destination="tLt-eK-9mO" id="10O-tV-oZq"/>
-                        <outlet property="logInImage" destination="CGo-4C-nYh" id="sHA-hI-iFy"/>
                         <outlet property="monthTotalLabel" destination="Ehb-qx-D77" id="zab-h7-8tt"/>
                         <outlet property="progressBar" destination="stD-It-bmS" id="gSl-mi-9pv"/>
                         <outlet property="weekTotalLabel" destination="sYp-ox-8Tt" id="gU3-Is-fpb"/>
@@ -385,7 +379,7 @@
         <scene sceneID="FRY-Zl-xiq">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bZg-sl-9rJ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Main" image="home-32" id="Zny-5T-e8y"/>
+                    <tabBarItem key="tabBarItem" title="Main" image="Home-Spotlight-40" id="Zny-5T-e8y"/>
                     <toolbarItems/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="yra-YG-zZz">
@@ -403,10 +397,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="export-32" width="32" height="32"/>
-        <image name="home-32" width="32" height="32"/>
-        <image name="line_chart-32" width="32" height="32"/>
-        <image name="settings-32" width="32" height="32"/>
+        <image name="Home-Spotlight-40" width="40" height="40"/>
+        <image name="line_chart-Spotlight-40" width="40" height="40"/>
+        <image name="logout-Spotlight-40" width="40" height="40"/>
+        <image name="settings-Spotlight-40" width="40" height="40"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

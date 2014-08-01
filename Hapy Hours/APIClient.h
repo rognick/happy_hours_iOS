@@ -11,10 +11,28 @@
 
 @interface APIClient : AFHTTPRequestOperationManager
 
-- (void)userLogin:(NSDictionary *)params :(void(^)(id result, NSError *error))block;
-- (void)userLogOut:(void(^)(id result, NSError *error))block;
-- (void)start:(void(^)(id result, NSError *error))block;
-- (void)stop:(void(^)(id result, NSError *error))block;
-- (void)reports:(void(^)(id result, NSError *error))block;
+- (void)userLogin:(NSDictionary *)params
+          success:(void(^)(id response))success
+          failure:(void(^)(NSError *error))failure;
+
+- (void)userLogOut:(NSDictionary *)params
+           success:(void(^)(id response))success
+           failure:(void(^)(NSError *error))failure
+     sessionExpiry:(void(^)())sessionExpiry;
+
+- (void)startTimer:(NSDictionary *)params
+           success:(void(^)(id response))success
+           failure:(void(^)(NSError *error))failure
+     sessionExpiry:(void(^)())sessionExpiry;
+
+- (void)stopTimer:(NSDictionary *)params
+          success:(void(^)(id response))success
+          failure:(void(^)(NSError *error))failure
+    sessionExpiry:(void(^)())sessionExpiry;
+
+- (void)reports:(NSDictionary *)params
+        success:(void(^)(id response))success
+        failure:(void(^)(NSError *error))failure
+  sessionExpiry:(void(^)())sessionExpiry;
 
 @end

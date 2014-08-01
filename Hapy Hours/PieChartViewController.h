@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "XYPieChart.h"
+#import "BaseViewController.h"
 
-@interface PieChartViewController : UIViewController <XYPieChartDelegate, XYPieChartDataSource>
+@interface PieChartViewController : BaseViewController <XYPieChartDelegate, XYPieChartDataSource>
+
 @property (weak, nonatomic) IBOutlet XYPieChart *pieChart;
-@property (nonatomic, strong) NSMutableArray *slices;
-@property (nonatomic, strong) NSArray        *sliceColors;
-@property (nonatomic, strong) NSString       *worketDays;
-@property (weak, nonatomic) IBOutlet UISwitch *switchPercent;
+@property (nonatomic, strong) NSMutableArray    *slices;
+@property (nonatomic, strong) NSArray           *sliceColors;
+@property (nonatomic, strong) NSString          *worketDays;
 
 @end

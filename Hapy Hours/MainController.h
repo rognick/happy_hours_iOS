@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface MainController : UIViewController
+@interface MainController : BaseViewController
 
 @property (weak, nonatomic) IBOutlet UILabel *dayTotalLabel;
 @property (weak, nonatomic) IBOutlet UILabel *weekTotalLabel;
@@ -16,5 +17,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *buttonStartStop;
 @property (weak, nonatomic) IBOutlet UIProgressView *progressBar;
 @property (weak, nonatomic) IBOutlet UILabel *labelStartStop;
+@property (weak, nonatomic) IBOutlet UIImageView *logInImage;
 
 @end

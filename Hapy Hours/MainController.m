@@ -91,7 +91,9 @@
 }
 
 - (void)setTimerLoop {
-    if ([_defaults boolForKey:KEY_TIMER_ON] && user.isValidToken) {
+    user = [[UserModel alloc] init];
+    _defaults = [NSUserDefaults standardUserDefaults];
+    if ([_defaults boolForKey:KEY_TIMER_ON] && [user isValidToken]) {
         [self startTimerLoop];
     } else {
         [self stopTimerLoop];

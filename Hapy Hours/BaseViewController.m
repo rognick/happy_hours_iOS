@@ -8,7 +8,7 @@
 
 #import "BaseViewController.h"
 #import "APIClient.h"
-
+#import "MainController.h"
 
 @interface BaseViewController()
 
@@ -56,6 +56,8 @@
         [apiClient userLogin:params success:^(id response) {
             [alert dismissWithClickedButtonIndex:0 animated:YES];
             [user setToken:response];
+            MainController *main = [[MainController alloc] init];
+            [main setTimerLoop];
         } failure:^(NSError *error) {
             if (error) {
                 [alert dismissWithClickedButtonIndex:0 animated:YES];
@@ -85,7 +87,7 @@
 - (void)sessionExpiry {
     
     [user removeToken];
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Session token expired"
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Session expired"
                                             message:@"You need to start over"
                                            delegate:self
                                   cancelButtonTitle:@"OK"

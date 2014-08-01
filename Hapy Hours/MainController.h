@@ -19,4 +19,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelStartStop;
 @property (weak, nonatomic) IBOutlet UIImageView *logInImage;
 
+- (void)setTimerLoop;
 @end

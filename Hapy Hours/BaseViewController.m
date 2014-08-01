@@ -12,6 +12,8 @@
 
 @interface BaseViewController()
 
+@property (nonatomic, strong) UIAlertView *alertView;
+
 @end
 
 @implementation BaseViewController
@@ -76,23 +78,30 @@
 
 - (void)showServerError: (NSString *)title :(NSError *)error{
     
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title
+    if ([_alertView isVisible]) {
+        [_alertView dismissWithClickedButtonIndex:0 animated:YES];
+    }
+    _alertView = [[UIAlertView alloc] initWithTitle:title
                                             message:[error localizedDescription]
                                            delegate:nil
                                   cancelButtonTitle:@"Ok"
                                   otherButtonTitles:nil];
-    [alertView show];
+    [_alertView show];
 }
 
 - (void)sessionExpiry {
     
     [user removeToken];
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Session expired"
+    
+    if ([_alertView isVisible]) {
+        [_alertView dismissWithClickedButtonIndex:0 animated:YES];
+    }
+    _alertView = [[UIAlertView alloc] initWithTitle:@"Session expired"
                                             message:@"You need to start over"
                                            delegate:self
                                   cancelButtonTitle:@"OK"
                                   otherButtonTitles:nil];
-    [alertView show];
+    [_alertView show];
 }
 
 @end

@@ -150,14 +150,16 @@
         case 0:{
             
             int worketDayLeft = (int)[self workingDays];
-            int month = [[self.slices objectAtIndex:index] intValue];
+            int month = (worketDayLeft * 8) - [[self.slices objectAtIndex:1] intValue];
+//            int month = [[self.slices objectAtIndex:index] intValue];
             int week = 0;
-            int day   = month/worketDayLeft;
+            int dayHours   = month/worketDayLeft;
+            int dayMin     = (month * 60 / worketDayLeft) % 60;
             if (worketDayLeft > 4) {
                 week  = month/((worketDayLeft/5));
             }
-            
-            message = [NSString stringWithFormat:@"Until the end of the month: %dh\nPer week: %dh\nPer day: %dh",month,week,day];
+
+            message = [NSString stringWithFormat:@"\nUntil the end of the month: %dh\nPer week: %dh\nPer day: %dh %dm",month,week,dayHours,dayMin];
         }
             break;
             

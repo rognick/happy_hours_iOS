@@ -59,7 +59,11 @@
                 [self setUserUI];
                 [self startTimerLoop];
             } failure:^(NSError *error) {
-                [self showServerError:@"Error to Start Timer" :error];
+                if (error) {
+                    [self showServerError:@"Error to Start Timer" :error];
+                } else {
+                    [_defaults setBool:true forKey:KEY_TIMER_ON];
+                }
             } sessionExpiry:^{
                 [self sessionExpiry];
             }];
@@ -71,7 +75,11 @@
                 [self setUserUI];
                 [self stopTimerLoop];
             } failure:^(NSError *error) {
-                [self showServerError:@"Error to Stop Timer" :error];
+                if (error) {
+                    [self showServerError:@"Error to Stop Timer" :error];
+                } else {
+                    [_defaults setBool:false forKey:KEY_TIMER_ON];
+                }
             } sessionExpiry:^{
                 [self sessionExpiry];
             }];
@@ -93,6 +101,7 @@
 - (void)startTimerLoop {
     [self stopTimerLoop];
     [self updateTimeReports];
+#warning set timer loop
     _startTimerRequest = [NSTimer scheduledTimerWithTimeInterval:1.0
                                                           target:self
                                                         selector:@selector(updateTimeReports)

@@ -8,6 +8,9 @@
 
 #import "PieChartViewController.h"
 
+int WEEK_DAYS;
+int WEEK_WORK;
+
 @implementation PieChartViewController
 @synthesize user;
 @synthesize apiClient;
@@ -151,15 +154,11 @@
             
             int worketDayLeft = (int)[self workingDays];
             int month = (worketDayLeft * 8) - [[self.slices objectAtIndex:1] intValue];
-//            int month = [[self.slices objectAtIndex:index] intValue];
-            int week = 0;
+            int week = (WEEK_DAYS * 8) - WEEK_WORK;
             int dayHours   = month/worketDayLeft;
             int dayMin     = (month * 60 / worketDayLeft) % 60;
-            if (worketDayLeft > 4) {
-                week  = month/((worketDayLeft/5));
-            }
 
-            message = [NSString stringWithFormat:@"\nUntil the end of the month: %dh\nPer week: %dh\nPer day: %dh %dm",month,week,dayHours,dayMin];
+            message = [NSString stringWithFormat:@"\nUntil the end of the month: %dh\n\t\t\t\tweek: %dh\n\t\t\t\t\t day: %dh %dm",month,week,dayHours,dayMin];
         }
             break;
             
@@ -189,6 +188,7 @@
     [apiClient reports:[user getToken] success:^(id response) {
         worketDays = [response valueForKeyPath:@"workedDays"];
         [self chartDataProcessing:[response valueForKeyPath:@"timeToWork"] :[response valueForKeyPath:@"monthly"]];
+        WEEK_WORK = ([[response valueForKeyPath:@"weekly"] intValue] / (1000*60*60));
     } failure:^(NSError *error) {
         [self showServerError:@"Server Error" :error];
     } sessionExpiry:^{
@@ -215,6 +215,7 @@
 
 - (NSInteger)workingDays {
     
+    BOOL weekEndDays = YES;
     NSInteger count = 0;
     NSInteger sunday = 1;
     NSInteger saturday = 7;
@@ -232,12 +233,18 @@
     [daysToEnd setDay:[[calendar components: NSWeekCalendarUnit fromDate:[NSDate date]] week] - [dateComp day]];
     toDate = [calendar dateByAddingComponents:daysToEnd toDate:currentDate options:0];
     
-    while (([currentDate compare:toDate] == NSOrderedSame) || ([currentDate compare:toDate] == NSOrderedAscending)) {
+    while ( ([currentDate compare:toDate] == NSOrderedAscending)) {
         
         NSDateComponents *dateComponents = [calendar components:NSWeekdayCalendarUnit | NSDayCalendarUnit fromDate:currentDate];
 
         if (dateComponents.weekday != saturday && dateComponents.weekday != sunday) {
             count++;
+            
+        } else {
+            if (weekEndDays) {
+                WEEK_DAYS = (int)count;
+                weekEndDays = NO;
+            }
         }
         currentDate = [calendar dateByAddingComponents:oneDay
                                                 toDate:currentDate

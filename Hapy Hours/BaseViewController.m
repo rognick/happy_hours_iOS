@@ -78,9 +78,7 @@
 
 - (void)showServerError: (NSString *)title :(NSError *)error{
     
-    if ([_alertView isVisible]) {
-        [_alertView dismissWithClickedButtonIndex:0 animated:YES];
-    }
+     [_alertView dismissWithClickedButtonIndex:0 animated:YES];
     _alertView = [[UIAlertView alloc] initWithTitle:title
                                             message:[error localizedDescription]
                                            delegate:nil
@@ -93,9 +91,7 @@
     
     [user removeToken];
     
-    if ([_alertView isVisible]) {
-        [_alertView dismissWithClickedButtonIndex:0 animated:YES];
-    }
+    [_alertView dismissWithClickedButtonIndex:0 animated:YES];
     _alertView = [[UIAlertView alloc] initWithTitle:@"Session expired"
                                             message:@"You need to start over"
                                            delegate:self

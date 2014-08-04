@@ -112,10 +112,8 @@
 }
 
 - (void)stopTimerLoop {
-    if ([_startTimerRequest isValid]) {
         [_startTimerRequest invalidate];
         _startTimerRequest = nil;
-    }
 }
 
 - (void)updateTimeReports {

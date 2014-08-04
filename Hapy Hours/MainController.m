@@ -63,6 +63,9 @@
                     [self showServerError:@"Error to Start Timer" :error];
                 } else {
                     [_defaults setBool:true forKey:KEY_TIMER_ON];
+                    [_defaults synchronize];
+                    [self setUserUI];
+                    [self stopTimerLoop];
                 }
             } sessionExpiry:^{
                 [self sessionExpiry];
@@ -79,6 +82,9 @@
                     [self showServerError:@"Error to Stop Timer" :error];
                 } else {
                     [_defaults setBool:false forKey:KEY_TIMER_ON];
+                    [_defaults synchronize];
+                    [self setUserUI];
+                    [self stopTimerLoop];
                 }
             } sessionExpiry:^{
                 [self sessionExpiry];

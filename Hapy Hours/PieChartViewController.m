@@ -10,6 +10,7 @@
 
 int WEEK_DAYS;
 int WEEK_WORK;
+int DAY_HOURS;
 
 @implementation PieChartViewController
 @synthesize user;
@@ -189,6 +190,7 @@ int WEEK_WORK;
         worketDays = [response valueForKeyPath:@"workedDays"];
         [self chartDataProcessing:[response valueForKeyPath:@"timeToWork"] :[response valueForKeyPath:@"monthly"]];
         WEEK_WORK = ([[response valueForKeyPath:@"weekly"] intValue] / (1000*60*60));
+        DAY_HOURS = ([[response valueForKeyPath:@"daily"] intValue] / (1000*60*60));
     } failure:^(NSError *error) {
         [self showServerError:@"Server Error" :error];
     } sessionExpiry:^{

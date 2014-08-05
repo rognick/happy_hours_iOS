@@ -244,18 +244,18 @@
 		5299D565196AB87300380AA6 /* Hapy Hours */ = {
 			isa = PBXGroup;
 			children = (
+				52BC89FE19753B0C004ED81F /* AFNetworking */,
+				52BC8A1B19753B1B004ED81F /* UIKit+AFNetworking */,
+				528E0FE4197E981900DC04DB /* App Delegate */,
+				52BC89FA1974327A004ED81F /* Constants */,
 				5276F1F21986250F00225559 /* Controller */,
 				528E0FE2197E877400DC04DB /* Images.xcassets */,
 				5299D571196AB87300380AA6 /* Main.storyboard */,
-				528E0FE4197E981900DC04DB /* App Delegate */,
-				52BC89FE19753B0C004ED81F /* AFNetworking */,
-				52BC8A1B19753B1B004ED81F /* UIKit+AFNetworking */,
 				52BC8A3A1976C6A2004ED81F /* Networking Extension */,
-				52BC89FA1974327A004ED81F /* Constants */,
+				5299D566196AB87300380AA6 /* Supporting Files */,
 				528E0FDE197E694900DC04DB /* User Model */,
 				52BC89F61973D269004ED81F /* User Settings */,
 				5254CB7719708AAF00580A09 /* View Controllers */,
-				5299D566196AB87300380AA6 /* Supporting Files */,
 			);
 			path = "Hapy Hours";
 			sourceTree = "<group>";

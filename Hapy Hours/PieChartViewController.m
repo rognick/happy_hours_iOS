@@ -42,11 +42,6 @@ int DAY_HOURS;
                        [UIColor colorWithRed:246/255.0 green:0/255.0 blue:0/255.0 alpha:1],
                        [UIColor colorWithRed:129/255.0 green:195/255.0 blue:29/255.0 alpha:1],
                        [UIColor colorWithRed:62/255.0 green:173/255.0 blue:219/255.0 alpha:1],nil];
-    
-    user = [[UserModel alloc] init];
-    apiClient = [[APIClient alloc] init];
-    [self requestChartData];
-    [self.pieChart reloadData];
 }
 
 - (void)viewDidUnload

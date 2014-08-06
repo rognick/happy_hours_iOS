@@ -49,9 +49,9 @@
     UILocalNotification* localNotification = [[UILocalNotification alloc] init];
     localNotification.fireDate = pickerDate;
     localNotification.alertBody = self.message.text;
-    localNotification.alertAction = nil;//@"Start Timer";
+    localNotification.alertAction = nil;
     localNotification.timeZone = [NSTimeZone defaultTimeZone];
-    localNotification.repeatInterval = NSMinuteCalendarUnit;//NSDayCalendarUnit;
+    localNotification.repeatInterval = NSDayCalendarUnit;
     localNotification.soundName = UILocalNotificationDefaultSoundName;
     
     NSDictionary *userInfo = [NSDictionary dictionaryWithObject:self.message.text forKey:_reminderName];

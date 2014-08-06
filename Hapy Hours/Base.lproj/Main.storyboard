@@ -14,7 +14,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
-                            <tableViewSection headerTitle="Reminder" id="GMZ-Pc-2EU">
+                            <tableViewSection headerTitle="Reminder" footerTitle="Set the start and end of the working day to receive daily notifications to not miss a second of the present time to work" id="GMZ-Pc-2EU">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" id="ir7-c9-mVU">
                                         <rect key="frame" x="0.0" y="55" width="320" height="44"/>
@@ -75,7 +75,7 @@
                             <tableViewSection footerTitle="Setup server host and port" id="WRJ-wR-A9C">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" id="OoI-2s-N2u">
-                                        <rect key="frame" x="0.0" y="173" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="226" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OoI-2s-N2u" id="rCE-Al-YwA">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -105,7 +105,7 @@
                             <tableViewSection id="dbl-iT-2lp">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" id="BVH-Yo-hki">
-                                        <rect key="frame" x="0.0" y="267" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="320" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BVH-Yo-hki" id="4kM-TH-BJl">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>

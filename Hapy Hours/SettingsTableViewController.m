@@ -11,6 +11,7 @@
 #import "Constants.h"
 #import "UserModel.h"
 #import "BaseViewController.h"
+#import "ReminderBeginningWorkingViewController.h"
 
 @interface SettingsTableViewController ()
 
@@ -48,7 +49,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     switch (indexPath.section) {
-        case 1:{
+        case 2:{
             
             BaseViewController *base = [[BaseViewController alloc] init];
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Logout process\nPlease Wait..."
@@ -81,4 +82,20 @@
             break;
     }
 }
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"startReminder"]) {
+        ReminderBeginningWorkingViewController *startReminder = segue.destinationViewController;
+        startReminder.navigationItem.title = @"Beginning of the day";
+        startReminder.reminderName = REMAINDER_START;
+    }
+    
+    if ([[segue identifier] isEqualToString:@"endReminder"]) {
+        ReminderBeginningWorkingViewController *endReminder = segue.destinationViewController;
+        endReminder.navigationItem.title = @"End of the day";
+        endReminder.reminderName = REMAINDER_STOP;
+    }
+}
+
 @end

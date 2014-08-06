@@ -49,6 +49,7 @@
 		52BC8A39197565DD004ED81F /* ServerSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BC8A38197565DD004ED81F /* ServerSettingsViewController.m */; };
 		52BC8A3D1977AD68004ED81F /* APIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 52BC8A3C1977AD68004ED81F /* APIClient.m */; };
 		52D27D781971E2B000FC93F7 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D27D771971E2B000FC93F7 /* SettingsTableViewController.m */; };
+		52F1D0821991B44800C38E3A /* ReminderBeginningWorkingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52F1D0811991B44800C38E3A /* ReminderBeginningWorkingViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,6 +138,8 @@
 		52BC8A3C1977AD68004ED81F /* APIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIClient.m; sourceTree = "<group>"; };
 		52D27D761971E2B000FC93F7 /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewController.h; sourceTree = "<group>"; };
 		52D27D771971E2B000FC93F7 /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
+		52F1D0801991B44800C38E3A /* ReminderBeginningWorkingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReminderBeginningWorkingViewController.h; sourceTree = "<group>"; };
+		52F1D0811991B44800C38E3A /* ReminderBeginningWorkingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReminderBeginningWorkingViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +181,8 @@
 				5276F1F7198625F900225559 /* PieChartViewController.m */,
 				5290F665198A7E360008CDB1 /* BaseViewController.h */,
 				5290F666198A7E360008CDB1 /* BaseViewController.m */,
+				52F1D0801991B44800C38E3A /* ReminderBeginningWorkingViewController.h */,
+				52F1D0811991B44800C38E3A /* ReminderBeginningWorkingViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -476,6 +481,7 @@
 				52BC8A1719753B0C004ED81F /* AFURLConnectionOperation.m in Sources */,
 				52BC8A3219753B1B004ED81F /* UIProgressView+AFNetworking.m in Sources */,
 				521A1BA219733265007EB59C /* Keychain.m in Sources */,
+				52F1D0821991B44800C38E3A /* ReminderBeginningWorkingViewController.m in Sources */,
 				52BC8A2F19753B1B004ED81F /* UIAlertView+AFNetworking.m in Sources */,
 				5287F0F8197FC12B00053BC4 /* MainController.m in Sources */,
 				52BC89FD19743608004ED81F /* Constants.m in Sources */,

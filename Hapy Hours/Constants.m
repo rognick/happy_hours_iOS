@@ -15,6 +15,8 @@ NSString* const SERVICE_NAME    = @"com.winify.Happy-Hours";
 NSString* const SERVER_HOST     = @"SERVER_HOST";
 NSString* const SERVER_PORT     = @"SERVER_PORT";
 NSString* const TOKEN           = @"TOKEN";
+NSString* const REMAINDER_START = @"REMAINDER_START";
+NSString* const REMAINDER_STOP  = @"REMAINDER_STOP";
 
 /*------------Server errors-----------------------------*/
 NSString* const SERVER_SESSION_EXPIRY = @"SessionExpiry";

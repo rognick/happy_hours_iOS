@@ -15,6 +15,8 @@ extern NSString* const SERVICE_NAME;
 extern NSString* const SERVER_HOST;
 extern NSString* const SERVER_PORT;
 extern NSString* const TOKEN;
+extern NSString* const REMAINDER_START;
+extern NSString* const REMAINDER_STOP;
 
 /*------------Server errors-----------------------------*/
 extern NSString* const SERVER_SESSION_EXPIRY;

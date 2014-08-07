@@ -33,6 +33,8 @@
             [_saveClearButtonTitle setTitle:@"Clear"];
             [_message setText:notification.alertBody];
             [_datePicker setDate:notification.fireDate animated:YES];
+            [_datePicker setSelected:NO];
+            [_message setEnabled:NO];
         }
     }
 }
@@ -82,6 +84,8 @@
     if ([sender.title isEqualToString:@"Clear"]) {
         [self clearReminder];
         [_saveClearButtonTitle setTitle:@"Save"];
+        [_datePicker setEnabled:YES];
+        [_message setEnabled:YES];
         
     } else if ([sender.title isEqualToString:@"Save"]) {
         [self saveReminder];

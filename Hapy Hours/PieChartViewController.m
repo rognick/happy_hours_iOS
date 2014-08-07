@@ -150,7 +150,7 @@ int DAY_HOURS;
             
             int worketDayLeft = (int)[self workingDays];
             int month = (worketDayLeft * 8) - [[self.slices objectAtIndex:1] intValue];
-            int week = (WEEK_DAYS * 8) - WEEK_WORK;
+            int week = (WEEK_DAYS * 8) + ((5 * 8) - WEEK_WORK);
             int dayHours   = month/worketDayLeft;
             int dayMin     = (month * 60 / worketDayLeft) % 60;
 

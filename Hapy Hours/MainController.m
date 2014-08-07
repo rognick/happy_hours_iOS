@@ -140,7 +140,7 @@
 - (NSString*)timeConvertor: (NSString*)millisecondsString {
     NSInteger milliseconds = [millisecondsString intValue];
     NSString *minutes = [self intToString: ((milliseconds / (1000*60)) % 60)];
-    NSString *hours = [self intToString: ((milliseconds / (1000*60*60)) % 24)];
+    NSString *hours = [self intToString: (int)((milliseconds / (1000*60*60)))];
     
     return [NSString stringWithFormat: @"%@h %@m",hours,minutes];
 }
